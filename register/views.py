@@ -25,12 +25,13 @@ User = get_user_model()
 
 class Top(generic.TemplateView):
     template_name = 'register/top.html'
-    
+
     #テンプレートに値を渡すにはcontextをオーバー
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #ログインユーザーのID表示
-        #context["foo"] = self.request.user.id
+        context["foo"] = self.request.user.id
+        context["foo_user"] = self.request.user
         if self.request.user.id == None:
             context["foo"] = 0
         else:
@@ -185,7 +186,7 @@ class PasswordResetConfirm(PasswordResetConfirmView):
 class PasswordResetComplete(PasswordResetCompleteView):
     """新パスワード設定しましたページ"""
     template_name = 'register/password_reset_complete.html'
-    
+
 
 #以下追加機能--------------------------
 #汎用ビューの書き方
@@ -198,19 +199,19 @@ class ListPlayers(OnlyYouMixin, generic.ListView):
     model = User
     context_object_name = "player_list"  # この行で変数名を指定
     #paginate_by = 5 #リストの件数
-    
+
     def get_queryset(self, **kwargs):
         return Player.objects.filter(user_id=self.kwargs['pk']).order_by('id').reverse()
-    
+
     template_name = 'register/user_list_player.html'  # デフォルトユーザーを使う場合に備え、きちんとtemplate名を書く
-    
+
 
 #登録していないと見せない（LoginRequiredMixin）
 class AddPlayers(LoginRequiredMixin, generic.CreateView):
     template_name = 'register/user_add_player.html'
     model = Player
     fields = ("user_id","player_name",)
-    
+
     #テンプレートに値を渡すにはcontextをオーバー
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -218,7 +219,7 @@ class AddPlayers(LoginRequiredMixin, generic.CreateView):
         context["foo"] = self.request.user.id
         context["foo1"] = self.request.user
         return context
-    
+
     def get_success_url(self):
         return resolve_url('register:add_player')
 
@@ -227,7 +228,7 @@ class PlayerUpdate(OnlyYouMixin, generic.UpdateView):
     """これを消すとなぜかリストが表示できない"""
     template_name = 'register/top.html'  # デフォルトユーザーを使う場合に備え、きちんとtemplate名を書く
 
-    
+
 class PlayerDetailUpdate(UpdateView):
     """ユーザー情報更新ページ"""
     model = Player
@@ -237,6 +238,3 @@ class PlayerDetailUpdate(UpdateView):
 
     def get_success_url(self):
         return resolve_url('register:top')
-    
-    
-

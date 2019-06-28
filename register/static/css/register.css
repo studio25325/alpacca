@@ -1,6 +1,6 @@
 body {
     font-family: 'Noto Serif JP', serif;
-    background-color: #C3C7CA;
+    background-color: #dedede;
     color: #353535;
 }
 
@@ -61,24 +61,9 @@ h2 {
     color: #000000;
 }
 
-.main_box {
-    background-color: #fed100;
-    width: 100%;
-    color: #353535;
-    line-height: 200%;
-    font-size: 16pt;
-    padding: 20px 20px 20px 20px;
-}
 
-.main_box2 {
-    background-color: #535d5d;
-    width: 100%;
-    font-size: 22pt;
-    font-weight: 600;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 10px 10px 10px 10px;
-}
+
+
 
 .main_box2 a {
     color: #FFFFFF;
@@ -149,7 +134,78 @@ div:nth-child(2n) > .mid_box {
     background-color: #FFFFFF;
 }
 
+/*　トップページデザイン　*/
 
+.btn-circle-stitch {
+  display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 5px #87befd;
+  border: dashed 1px #FFF;
+  transition: .4s;
+}
+
+.btn-circle-stitch:hover {
+  background: #668ad8;
+  text-decoration: none;
+  box-shadow: 0px 0px 0px 5px #668ad8;
+}
+
+.gt_box1 {
+    background-color: #dedede;
+    margin: 0px 0px 0px 0px;
+    padding: 30px 0px 30px 0px;
+    text-align: center;
+}
+
+.main_box {
+    background-color: #fed100;
+    width: 100%;
+    color: #353535;
+    line-height: 200%;
+    font-size: 12pt;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+}
+
+.navbar a {
+  color: #ffffff  !important;
+}
+
+.navbar li {
+  color: #ffffff  !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.5);
+  color: #ffffff  !important;
+}
+
+.sub_box {
+    width: 100%;
+    color: #353535;
+    line-height: 200%;
+    font-size: 12pt;
+    text-align: center;
+    padding: 0px 20px 0px 20px;
+}
+
+.main_box2 {
+    background-color: #535d5d;
+    width: 100%;
+    font-size: 22pt;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
 
 a {
     color: #3e5159;
