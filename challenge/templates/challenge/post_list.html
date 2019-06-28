@@ -1,0 +1,44 @@
+{% extends 'challenge/base.html' %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        壁打ち総数：{{ params.taiga_01 }}回：{{ params.taiga_01_days }}日<br />
+        サーブ総数：{{ params.taiga_02 }}回：{{ params.taiga_02_days }}日<br />
+        有希さん腹筋総数：{{ params.yuki_01 }}回：{{ params.yuki_01_days }}日
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box2">
+        <a href="{% url 'post10_new' %}" >+</a>
+    </div>
+</div>
+
+
+        <div class="container">
+        		<div class="row">
+                    {% for post in posts %}
+        			<div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="mid_box">   <!-- sm時は6 xs時は12 -->
+                        <div class="date">
+                            {{ post.created_date }}
+                        </div>
+                        <h2><a href="{% url 'post10_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{% if post.challenger == '1' %}
+                                挑戦者：大凱
+                            {% elif post.challenger == '2' %}
+                                挑戦者：有希
+                            {% endif %}
+                        </p>
+                        <p>練習結果：{{ post.result }}回</p>
+                        </div>
+        			</div>
+                    {% endfor %}
+        		</div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

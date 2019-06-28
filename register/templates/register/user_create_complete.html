@@ -1,0 +1,16 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<div class="row o-3column">
+<div class="col-md-12">
+<div  class="gt_box1">
+
+    本登録が完了しました。<br>
+    登録されたメールアドレスとパスワードでログインしてください。<br>
+    <a class="btn btn-info" href="{% url 'register:login' %}">ログイン</a>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

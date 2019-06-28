@@ -1,0 +1,57 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<script type="text/javascript" language="javascript">
+    var login_flag =  {{ foo }};
+    window.onload = function() {
+        document.getElementById("incomplete").style.display="none";
+        if(login_flag == 0){
+            document.getElementById("incomplete").style.display="block";
+        } else {
+            document.getElementById("completion").style.display="block";
+        }
+    }
+    function onButtonClick1() {
+        if(login_flag == 0){
+            document.getElementById("incomplete").style.display="block";
+        } else {
+            document.getElementById("completion").style.display="block";
+        }
+    }
+</script>
+
+<div class="container">
+
+<div class="row o-3column">
+    <div class="col-md-6">
+        <div  class="gt_box1">
+            <div id="incomplete" style="display:none">
+                <a class="btn btn-info btn-lg btn-block" href="/challenge" role="button">Ten thousand challenge</a>
+            </div>
+            <div id="completion" style="display:none">
+                <a class="btn btn-info btn-lg btn-block" href="/challenge" role="button">Ten thousand challenge</a>
+            </div>
+            <!--
+            <a class="btn btn-info btn-lg btn-block" href="https://grooow.net/" role="button">ブログ</a>
+            -->
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div  class="gt_box1">
+            <br />
+
+            <div style="text-align:center; font-size:80%; ">Copyright © Alpacca System All Rights Reserved.　</div>
+            <br />
+            </div>
+        </div>
+</div>
+<br />
+
+
+
+<br />
+<br />
+
+</div>
+{% endblock %}

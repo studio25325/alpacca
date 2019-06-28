@@ -1,0 +1,94 @@
+{% extends "register/base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+
+ <script type="text/javascript" language="javascript">
+    window.onload = function() {
+        target = document.getElementById("id_user_id");
+        target.value = {{ foo2 }};
+        target = document.getElementById("id_match_player");
+        target.value = '{{ wow }}';
+        
+        document.getElementById("created_date").style.display="none";
+        document.getElementById("match_winner").style.display="none";
+        document.getElementById("user_id").style.display="none";
+        document.getElementById("start_server").style.display="none";
+        document.getElementById("tb_flag").style.display="none";
+        
+        
+    };
+    function onButtonClick1() {
+          target = document.getElementById("id_server");
+          target.value = 'player';
+     }
+ </script>
+
+
+{% if foo == Flase %}
+    <script>
+	    setTimeout("location.href='https://localhost-grooow.paiza-user.cloud:8000/login'",10*5);
+    </script>
+{% else %}
+
+{% endif %}
+
+<div class="container">
+    <div class="row o-3column">
+        <div class="col-md-12">
+            <div  class="gt_box1">
+            
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <table class="table">
+                        <tbody>
+                            <tr id="tournament_name">
+                                <th><label for="id_tournament_name">大会名</label></th>
+                                <td>{{ form.tournament_name|add_class:"form-control" }}</td>
+                            </tr>
+                            <tr id="match_round">
+                                <th><label for="id_match_round">進行状況</label></th>
+                                <td>{{ form.match_round |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="match_type">
+                                <th><label for="id_match_type">試合形式</label></th>
+                                <td>{{ form.match_type |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="match_player">
+                                <th><label for="id_match_player">プレーヤー</label></th>
+                                <td>{{ form.match_player |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="match_enemy">
+                                <th><label for="id_match_enemy">対戦相手</label></th>
+                                <td>{{ form.match_enemy |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="start_server" style="display:none">
+                                <th><label for="id_start_server">サーブ権</label></th>
+                                <td>{{ form.start_server |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="match_winner" style="display:none">
+                                <th><label for="id_match_winner">勝敗</label></th>
+                                <td>{{ form.match_winner |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="created_date" style="display:none">
+                                <th><label for="id_created_date">日付</label></th>
+                                <td>{{ form.created_date |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="user_id" style="display:none">
+                                <th><label for="id_user_id">ID</label></th>
+                                <td>{{ form.user_id |add_class:"form-control"  }}</td>
+                            </tr>
+                            <tr id="tb_flag" style="display:none">
+                                <th><label for="id_user_id">TB</label></th>
+                                <td>{{ form.tb_flag |add_class:"form-control"  }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-info" >ニューゲーム</button>
+                </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

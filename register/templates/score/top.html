@@ -1,0 +1,52 @@
+{% extends "register/base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+
+ <script type="text/javascript" language="javascript">
+    window.onload = function() {
+        target = document.getElementById("id_user_id");
+        target.value = {{ foo }};
+        document.getElementById("created_date").style.display="none";
+        document.getElementById("match_winner").style.display="none";
+        document.getElementById("user_id").style.display="none";
+    };
+    function onButtonClick1() {
+          target = document.getElementById("id_server");
+          target.value = 'player';
+     }
+ </script>
+
+
+{% if foo == Flase %}
+    <script>
+	    setTimeout("location.href='https://localhost-grooow.paiza-user.cloud:8000/login'",10*5);
+    </script>
+{% else %}
+
+{% endif %}
+
+<div class="container">
+<div class="row o-3column">
+{% for item in player_list %}
+{% if item.is_active != False %}
+
+    <div class="col-md-6">
+        <div  class="gt_box1">
+        <div  class="gt_box2">
+        <h1>プレイヤー：{{ item.player_name }}</h1>
+        </div>
+        <br />
+            <button type="submit" class="btn btn-info"  onClick="location.href='{% url 'score:list_score_match' item.id %}'">履歴表示</button>
+            <button type="submit" class="btn btn-info"  onClick="location.href='{% url 'score:add_match' item.id %}'">新規試合登録</button>
+        <br />
+        </div>
+    </div>
+
+<br />
+{% endif %}
+{% endfor %}
+
+</div>
+</div>
+
+{% endblock %}
