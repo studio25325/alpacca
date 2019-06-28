@@ -3,30 +3,25 @@
 
 <div class="row o-3column">
 <div class="col-md-12">
-<div  class="gt_box1">
-
-<table class="table">
-    <tbody>
-        <tr>
-            <th>メールアドレス</th>
-            <td>{{ user.username }}</td>
-        </tr>
+<div  class="main_box3">
+    <div class="regi_txt">
+        ユーザーネーム：{{ user.username }}
+    </div>
+    <div class="regi_txt">
+        氏名：{{ user.first_name }}　{{ user.last_name }}
+    </div>
+    <div class="regi_txt">
         {% if user.username != user.email %}
-        <tr>
-            <th>メールアドレス</th>
-            <td>{{ user.email }}</td>
-        </tr>
+            メールアドレス：{{ user.email }}
         {% endif %}
-
-        <tr>
-            <th>ニックネーム</th>
-            <td>{{ user.first_name }}</td>
-        </tr>
-    </tbody>
-</table>
+    </div>
 
 </div>
 </div>
+</div>
+
+<div  class="main_box2">
+    　
 </div>
 
 {% endblock %}

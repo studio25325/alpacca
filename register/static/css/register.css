@@ -207,6 +207,46 @@ div:nth-child(2n) > .mid_box {
     padding: 10px 10px 10px 10px;
 }
 
+.main_box3 {
+    background-color: #535d5d;
+    width: 100%;
+    font-size: 22pt;
+    font-weight: 600;
+    color: #FFFFFF;
+    padding: 10px 10px 10px 10px;
+}
+
+.regi_txt {
+    margin: 10px 10px 0px 10px;
+    padding: 10px 10px 10px 10px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+.regi_form {
+    margin: 10px 10px 0px 10px;
+    padding: 14px 14px 14px 14px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+.regi_form2 {
+    margin: 10px 10px 0px 10px;
+    padding: 14px 14px 14px 14px;
+    background-color: rgba(255,255,255,0.0);
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12pt;
+    font-weight: 400;
+    text-align: center;
+}
+
 a {
     color: #3e5159;
     text-decoration: none;
