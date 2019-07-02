@@ -4,58 +4,88 @@ from .models import Post10
 from .forms import Post10Form
 from django.shortcuts import render, get_object_or_404
 
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, resolve_url
 
 #dataFrameの利用に必要
 from django_pandas.io import read_frame
 
+#会員情報関連
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+User = get_user_model()
+
+#テンプレート書式関連
+from django.template.loader import get_template
+from django.views import generic
+from django.contrib.auth.views import (
+    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+)
+from .forms import (
+    Post10Form,
+)
+
+#非ログイン対応
+class OnlyYouMixin(UserPassesTestMixin):
+    """本人か、スーパーユーザーだけユーザーページアクセスを許可する"""
+    raise_exception = False
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_superuser
 
 
+class TopPage(OnlyYouMixin, generic.TemplateView):
+    template_name = 'challenge/post_list.html'
 
-def index(request):
-    #return HttpResponse("10 サウザンド")
-    #posts = Post10.objects.reverse().first()
-    posts = Post10.objects.order_by('created_date').reverse()
+    #テンプレートに値を渡すにはcontextをオーバー
+    def get_context_data(self, **kwargs):
+        context_user = super().get_context_data(**kwargs)
+        #ログインユーザーのID表示
+        context_user["foo"] = self.request.user.id
+        context_user["foo_user"] = self.request.user
+        #context_user = self.request.user
+        if self.request.user.id == None:
+            context_user["foo"] = 0
+            #return redirect("http://127.0.0.1:8000")
+        else:
+            context_user["foo"] = 1
 
-    params = { # <- 渡したい変数を辞書型オブジェクトに格納
-        'taiga_01': 'a',
-        'taiga_02': 'b',
-        'taiga_03': 'b',
-        'taiga_01_days': 'a',
-        'taiga_02_days': 'b',
-        'taiga_03_days': 'b',
-        'yuki_01': 'a',
-        'yuki_02': 'b',
-        'yuki_03': 'b',
-        'yuki_01_days': 'a',
-        'yuki_02_days': 'b',
-        'yuki_03_days': 'b',
-    }
-    #form = PostForm()
-    context = {'posts': posts, 'params': params, }
-    #id = 1
+        posts = Post10.objects.order_by('created_date').reverse()
+        params = { # <- 渡したい変数を辞書型オブジェクトに格納
+            'taiga_01': 'a',
+            'taiga_02': 'b',
+            'taiga_03': 'b',
+            'taiga_01_days': 'a',
+            'taiga_02_days': 'b',
+            'taiga_03_days': 'b',
+            'yuki_01': 'a',
+            'yuki_02': 'b',
+            'yuki_03': 'b',
+            'yuki_01_days': 'a',
+            'yuki_02_days': 'b',
+            'yuki_03_days': 'b',
+        }
 
-    #df = Post10.objects.filter(challenger=id)
-    df = Post10.objects.all()
-    df = read_frame(df)
-    df_t = df[df.challenger == '1']
-    df_st = df_t[df_t.title == 'ストローク']
-    df_se = df_t[df_t.title == 'サーブ']
-    df_y = df[df.challenger == '2']
+        context = {'posts': posts, 'params': params, 'context_user': context_user, }
 
-    #合計件数
-    #params['title'] = len(df)
+        df = Post10.objects.all()
+        df = read_frame(df)
+        df_t = df[df.challenger == '1']
+        df_st = df_t[df_t.title == 'ストローク']
+        df_se = df_t[df_t.title == 'サーブ']
+        df_y = df[df.challenger == '2']
 
-    params['taiga_01'] = df_st['result'].sum(axis=0)
-    params['taiga_02'] = df_se['result'].sum(axis=0)
-    params['taiga_01_days'] = len(df_st)
-    params['taiga_02_days'] = len(df_se)
-    params['yuki_01'] = df_y['result'].sum(axis=0)
-    params['yuki_01_days'] = len(df_y)
-    #df_net1 = df_p[df_p.winner == '0']
+        params['taiga_01'] = df_st['result'].sum(axis=0)
+        params['taiga_02'] = df_se['result'].sum(axis=0)
+        params['taiga_01_days'] = len(df_st)
+        params['taiga_02_days'] = len(df_se)
+        params['yuki_01'] = df_y['result'].sum(axis=0)
+        params['yuki_01_days'] = len(df_y)
 
-    return render(request, 'challenge/post_list.html', context)
+        return context
+
 
 
 def post10_detail(request, pk):
