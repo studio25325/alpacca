@@ -10,6 +10,9 @@ from django.shortcuts import redirect
 #dataFrameの利用に必要
 from django_pandas.io import read_frame
 
+
+
+
 def index(request):
     #return HttpResponse("10 サウザンド")
     #posts = Post10.objects.reverse().first()
