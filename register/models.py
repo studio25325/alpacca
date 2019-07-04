@@ -50,6 +50,7 @@ if settings.AUTH_USER_MODEL == 'register.User':
         email = models.EmailField(_('email address'), unique=True)
         first_name = models.CharField(_('first name'), max_length=30, blank=True)
         last_name = models.CharField(_('last name'), max_length=150, blank=True)
+        user_flag = models.CharField(_('user flag'), max_length=150, blank=True)
 
         is_staff = models.BooleanField(
             _('staff status'),

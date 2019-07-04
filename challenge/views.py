@@ -18,6 +18,7 @@ User = get_user_model()
 #テンプレート書式関連
 from django.template.loader import get_template
 from django.views import generic
+from django.views.generic import TemplateView, DetailView
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
@@ -85,7 +86,6 @@ class TopPage(OnlyYouMixin, generic.TemplateView):
         params['yuki_01_days'] = len(df_y)
 
         return context
-
 
 
 def post10_detail(request, pk):

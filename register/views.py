@@ -32,6 +32,15 @@ class Top(generic.TemplateView):
         #ログインユーザーのID表示
         context["foo"] = self.request.user.id
         context["foo_user"] = self.request.user
+        #context["foo1"] = self.request.user.in_group
+
+        #ユーザーグループの取得
+        #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
+        if self.request.user.groups.filter(name='family').exists():
+            context["foo1"] = 'family'
+        else:
+            context["foo1"] = 'other'
+
         if self.request.user.id == None:
             context["foo"] = 0
         else:

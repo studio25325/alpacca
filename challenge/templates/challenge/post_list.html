@@ -26,6 +26,7 @@
                             {{ post.created_date }}
                         </div>
                         <h2><a href="{% url 'post10_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
                         <p>{% if post.challenger == '1' %}
                                 挑戦者：大凱
                             {% elif post.challenger == '2' %}
