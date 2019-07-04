@@ -39,7 +39,7 @@ class Top(generic.TemplateView):
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
         else:
-            context["foo1"] = 'other'
+            context["foo1"] = 'common'
 
         if self.request.user.id == None:
             context["foo"] = 0
