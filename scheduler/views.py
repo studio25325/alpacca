@@ -96,7 +96,7 @@ class MyCalendar(mixins.MonthCalendarMixin, mixins.WeekWithScheduleMixin, generi
 
 
 class MonthWithFormsCalendar(mixins.MonthWithFormsMixin, generic.View):
-    """フォーム付きの月間カレンダーを表示するビュー"""
+    """フォーム付きの月間カレンダーを表示するビューちょっと書き足し"""
     template_name = 'scheduler/month_with_forms.html'
     model = Schedule
     date_field = 'date'
