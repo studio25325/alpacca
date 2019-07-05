@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.timezone import now
 
+
 # Create your models here.
 
 class Schedule(models.Model):

@@ -4,6 +4,10 @@ import datetime
 import itertools
 from django import forms
 
+import pytz
+
+now = datetime.datetime.now(tz=pytz.utc)
+
 
 class BaseCalendarMixin:
     """カレンダー関連Mixinの、基底クラス"""

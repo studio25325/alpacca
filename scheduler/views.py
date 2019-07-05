@@ -5,6 +5,10 @@ from .forms import BS4ScheduleForm, SimpleScheduleForm
 from .models import Schedule
 from . import mixins
 
+import pytz
+
+now = datetime.datetime.now(tz=pytz.utc)
+
 
 class AlpaccaCalendar(mixins.MonthCalendarMixin, generic.TemplateView):
     """月間カレンダーを表示するビュー"""
