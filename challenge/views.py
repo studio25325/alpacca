@@ -99,7 +99,7 @@ def post10_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.created_date = timezone.localtime(timezone.now())
+            post.created_date = timezone.now()
             post.save()
             return redirect('post10_detail', pk=post.pk)
     else:
