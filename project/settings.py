@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'register',
     'challenge',
+    'scheduler',
 ]
 
 MIDDLEWARE = [
