@@ -7,7 +7,8 @@ from . import mixins
 
 import pytz
 
-now = datetime.datetime.now(tz=pytz.utc)
+#now = datetime.datetime.now(tz=pytz.utc)
+now = datetime.datetime.now()
 
 
 class AlpaccaCalendar(mixins.MonthCalendarMixin, generic.TemplateView):

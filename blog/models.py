@@ -6,10 +6,11 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
+    show_flag = models.CharField('表示フラグ', max_length=50, default=1)
+    start_time = models.DateTimeField('開始時間', default=timezone.now)
+    end_time = models.DateTimeField('終了時間', default=timezone.now)
     created_date = models.DateTimeField(
             default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()

@@ -1,0 +1,33 @@
+{% extends 'challenge/base.html' %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Detail
+    </div>
+    <div class="post">
+        <div class="mid_box">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+
+        {{ post.title }}<br />
+        {{ post.result|linebreaksbr }}<br />
+
+        {% if post.challenger == '1' %}
+            大凱
+        {% elif post.challenger == '2' %}
+            有希
+        {% endif %}
+        <br />
+
+        {{ post.created_date }}<br />
+        <a href="{% url 'post10_edit' pk=post.pk %}">
+        <button type="submit" class="save btn btn-default">Edit</button>
+        </a><br /><br /><br />
+        </div>
+    </div>
+</div>
+{% endblock %}

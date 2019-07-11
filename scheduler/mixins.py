@@ -6,7 +6,8 @@ from django import forms
 
 import pytz
 
-now = datetime.datetime.now(tz=pytz.utc)
+#now = datetime.datetime.now(tz=pytz.utc)
+now = datetime.datetime.now()
 
 
 class BaseCalendarMixin:
