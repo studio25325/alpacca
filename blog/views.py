@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Post
 from challenge.models import Post10
+from . import mixins
 
 
 class TopPage(TemplateView):
@@ -13,11 +14,12 @@ class TopPage(TemplateView):
         return context
 
 
-class ShowList(ListView):
+class ShowList(mixins.MonthWithScheduleMixin, ListView):
     template_name = "blog/show_list.html"
     model = Post
     #1ページの表示件数
     paginate_by = 5
+    date_field = 'date'
 
     def get_queryset(self):
         #通常の記載
@@ -54,8 +56,14 @@ class ShowList(ListView):
         else:
             context["user_flag"] = 'common'
 
-        context["bar"] = Post10.objects.all()  # 他のモデルからデータを取得
+        context["bar"] = Post10.objects.all()[:10] # 他のモデルからデータを取得
         #context["foo2"] = self.kwargs['pk']
+
+        #カレンダーデータの取得
+        #context["week"] = self.get_week_names()
+        #context["month"] = self.get_month_schedules()
+        context["month"] = self.get_month_calendar()
+
         return context
 
 

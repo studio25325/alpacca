@@ -53,7 +53,7 @@ class TopPage(OnlyYouMixin, generic.TemplateView):
         else:
             context_user["foo"] = 1
 
-        posts = Post10.objects.order_by('created_date').reverse()
+        posts = Post10.objects.order_by('created_date').reverse()[:15]
         params = { # <- 渡したい変数を辞書型オブジェクトに格納
             'taiga_01': 'a',
             'taiga_02': 'b',

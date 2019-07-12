@@ -21,4 +21,34 @@
 
 記載方法：url 'detail' pk=post.pk
 
+
+{% for i in week %}
+    {{ i }}
+{% endfor %}
+
+
+{% for i in month.month_days %}
+    {{ i }}<br />
+{% endfor %}
+
+{% for i in month.week_names %}
+    {{ i }}<br />
+{% endfor %}
+
+<br /><br />
+
+
+{% for i in month.month_day_schedules %}
+    {% for days, plan in i.items %}
+        {{ days }}：{{ plan }}<br /><br />
+    {% endfor %}
+{% endfor %}
+
+
+
+
+
+
+
+
 {% endblock %}
