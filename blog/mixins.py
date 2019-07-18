@@ -62,7 +62,7 @@ class WeekCalendarMixin(BaseCalendarMixin):
         first = days[0]
         last = days[-1]
         calendar_data = {
-            'now': datetime.date.today(),
+            'now': now,
             'week_days': days,
             'week_previous': first - datetime.timedelta(days=7),
             'week_next': first + datetime.timedelta(days=7),
