@@ -65,7 +65,24 @@
                     {% else %}
                         {{ day.day }}
                     {% endif %}
-                    ({{ week_name }})
+                    ({{ week_name }})<br><br>
+
+                    {% for s in schedules %}
+                        {% if s.date == day %}
+                            {{ s.start_time }} - {{ s.end_time }}<br>
+                            {{ s.title }}<br>
+                            {{ s.text }}<br>
+                            {{ s.description | linebreaks }}<br>
+                            {{ s.show_flag }}<br>
+                            {{ s.reservation_flag }}
+                            {% if s.reservation_flag == '1' %}
+                                未予約
+                            {% else %}
+                                予約済
+                            {% endif %}<br>
+                            参照日付：{{ s.date }}
+                        {% endif %}
+                    {% endfor %}
                 </td>
 
                 <td>
