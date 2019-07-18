@@ -1,13 +1,17 @@
 import calendar
 from collections import deque
 import datetime
+
+from django.utils import timezone
+
 import itertools
 from django import forms
 
 import pytz
 
 
-now = datetime.datetime.now()
+#now = datetime.datetime.now()
+now = timezone.now()
 
 
 
