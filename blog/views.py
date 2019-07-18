@@ -1,3 +1,4 @@
+import datetime
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Post
 from challenge.models import Post10
@@ -60,8 +61,6 @@ class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
         #context["foo2"] = self.kwargs['pk']
 
         #カレンダーデータの取得
-        #context["week"] = self.get_week_names()
-        #context["month"] = self.get_month_schedules()
         calendar_context = self.get_week_calendar()
         context.update(calendar_context)
         context['week_row'] = zip(
