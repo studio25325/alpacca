@@ -14,8 +14,8 @@ class TopPage(TemplateView):
         return context
 
 
-class ShowList(mixins.MonthWithScheduleMixin, ListView):
-    template_name = "blog/show_list.html"
+class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
+    template_name = "blog/week.html"
     model = Post
     #1ページの表示件数
     paginate_by = 5
@@ -62,7 +62,13 @@ class ShowList(mixins.MonthWithScheduleMixin, ListView):
         #カレンダーデータの取得
         #context["week"] = self.get_week_names()
         #context["month"] = self.get_month_schedules()
-        context["month"] = self.get_month_calendar()
+        calendar_context = self.get_week_calendar()
+        context.update(calendar_context)
+        context['week_row'] = zip(
+            calendar_context['week_names'],
+            calendar_context['week_days'],
+            calendar_context['week_day_schedules'].values()
+        )
 
         return context
 
