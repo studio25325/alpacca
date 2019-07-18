@@ -80,7 +80,8 @@
                             未予約
                         {% else %}
                             予約済
-                        {% endif %}
+                        {% endif %}<br>
+                        参照日付：{{ s.date }}
                     {% endfor %}
                 </td>
             </tr>
