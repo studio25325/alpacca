@@ -11,7 +11,7 @@ from django import forms
 
 
 #now = datetime.datetime.now()
-#now = timezone.localtime(timezone.now())
+now = timezone.localtime(timezone.now())
 
 
 
