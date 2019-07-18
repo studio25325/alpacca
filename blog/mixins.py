@@ -10,8 +10,8 @@ from django import forms
 import pytz
 
 
-#now = datetime.datetime.now()
-now = timezone.now()
+now = datetime.datetime.now()
+#now = timezone.localtime(timezone.now())
 
 
 
