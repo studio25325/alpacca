@@ -7,10 +7,10 @@ from django.utils import timezone
 import itertools
 from django import forms
 
-import pytz
+#import pytz
 
 
-now = datetime.datetime.now()
+#now = datetime.datetime.now()
 #now = timezone.localtime(timezone.now())
 
 
