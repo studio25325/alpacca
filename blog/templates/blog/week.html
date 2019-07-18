@@ -68,7 +68,11 @@
                     ({{ week_name }})<br><br>
 
                     {% for s in schedules %}
-                        {% if s.date == day %}
+                        {% if s.date.day == day.day %}
+
+                            大本：{{ day.day }}<br>
+                            投稿：{{ s.date.day }}<br>
+
                             {{ s.start_time }} - {{ s.end_time }}<br>
                             {{ s.title }}<br>
                             {{ s.text }}<br>
