@@ -3,6 +3,15 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .models import Post
 from challenge.models import Post10
 from . import mixins
+from django.utils import timezone
+
+#dataFrameの利用に必要
+from django_pandas.io import read_frame
+
+import calendar
+from django.utils import timezone
+
+now = timezone.localtime(timezone.now())
 
 
 class TopPage(TemplateView):
@@ -75,3 +84,31 @@ class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
 class ShowDetailView(DetailView):
     template_name = "blog/detail.html"
     model = Post
+
+
+class WeekView(mixins.WeekWithScheduleMixin, TemplateView):
+    template_name = "blog/new_week.html"
+    now = timezone.localtime(timezone.now())
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1')
+        #context["week"] = Post.objects.filter(date = self.now - datetime.timedelta(days=3))
+        #↑日付指定でのデータ取得方法
+        #これで日付をずらしてデータを取得できた。
+        #今日の日付を中心にdfかリストにappendしてデータを制作？
+        df = Post.objects.all()
+        df = read_frame(df)
+        context["set"] = len(df)
+
+        #カレンダーデータ
+        #today = datetime.datetime.now()
+        context["today"] = self.now.month
+        cal = calendar.Calendar(firstweekday=6)
+        #context["calendar"] = cal.itermonthdays2(this_today.year,this_today.month)
+        context["calendar"] = cal.itermonthdays2(2019,7)
+
+
+        return context

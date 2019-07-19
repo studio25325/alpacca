@@ -9,4 +9,6 @@ urlpatterns = [
     #path('detail/<int:pk>/', views.ShowDetailView.as_view(), name='detail'),
     path('detail/', views.ShowDetailView.as_view(), name='detail'),
     path('week_with_schedule/', views.ShowList.as_view(), name='week_with_schedule'),
+
+    path('new_week/', views.WeekView.as_view(), name='new_week'),
 ]
