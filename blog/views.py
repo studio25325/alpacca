@@ -1,17 +1,41 @@
+from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, resolve_url
 import datetime
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import (
+    TemplateView, ListView, DetailView, CreateView, UpdateView,
+)
 from .models import Post
 from challenge.models import Post10
 from . import mixins
 from django.utils import timezone
 
+#会員情報関連
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+User = get_user_model()
+
 #dataFrameの利用に必要
 from django_pandas.io import read_frame
+
+from .forms import (
+    BlogForm,
+)
 
 import calendar
 from django.utils import timezone
 
 now = timezone.localtime(timezone.now())
+
+
+#非ログイン対応
+class OnlyYouMixin(UserPassesTestMixin):
+    """本人か、スーパーユーザーだけユーザーページアクセスを許可する"""
+    raise_exception = False
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_superuser
+
 
 
 class TopPage(TemplateView):
@@ -81,13 +105,9 @@ class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
         return context
 
 
-class ShowDetailView(DetailView):
-    template_name = "blog/detail.html"
-    model = Post
 
-
-class WeekView(mixins.WeekWithScheduleMixin, TemplateView):
-    template_name = "blog/new_week.html"
+class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
+    template_name = "blog/schedule.html"
     now = timezone.localtime(timezone.now())
     model = Post
 
@@ -112,3 +132,28 @@ class WeekView(mixins.WeekWithScheduleMixin, TemplateView):
 
 
         return context
+
+#詳細表示
+class ScheduleDetailView(OnlyYouMixin, DetailView):
+    model = Post
+    template_name = "blog/detail.html"
+
+
+#エントリーフォーム
+class ScheduleCreateView(OnlyYouMixin, CreateView):
+    model = Post
+    template_name = "blog/blog_new.html"
+    form_class = BlogForm
+
+    def get_success_url(self):
+        return resolve_url('schedule:schedule')
+
+
+#投稿内容の編集
+class ScheduleUpdateView(OnlyYouMixin, UpdateView):
+    model = Post
+    template_name = "blog/blog_new.html"
+    form_class = BlogForm
+
+    def get_success_url(self):
+        return resolve_url('schedule:schedule')
