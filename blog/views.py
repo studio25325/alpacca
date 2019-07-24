@@ -105,16 +105,49 @@ class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
         return context
 
 
-
+#こいつがメイン表示
 class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
     template_name = "blog/schedule.html"
     now = timezone.localtime(timezone.now())
     model = Post
 
+    def get_previous_month(self, previous_month):
+        previous_month = previous_month - 1
+        return previous_month
+        #"""前月を返す"""
+        #if date.month == 1:
+        #    return date.replace(year=date.year-1, month=12, day=1)
+        #else:
+        #    return date.replace(month=date.month-1, day=1)
+
+    def get_next_month(self, show_month):
+        """次月を返す"""
+        show_month = show_month + 1
+        get_test = 6
+        self.set_month = 200
+        return show_month
+        #if date.month == 12:
+        #    return date.replace(year=date.year+1, month=1, day=1)
+        #else:
+        #    return date.replace(month=date.month+1, day=1)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1')
+        context["previous"] = self.get_previous_month(self.now.month)
+        context["next"] = self.get_next_month(self.now.month)
+        #2019/07/24 初期はないけど、再読み込みで見つかるデータを
+        context["previous"] = self.set_month
+        context["moo"] = self.kwargs.get('next')
+
+        #ユーザーグループの取得
+        #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
+        if self.request.user.groups.filter(name='family').exists():
+            context["foo1"] = 'family'
+            context["week"] = Post.objects.order_by('created_date').reverse()
+        else:
+            context["foo1"] = 'common'
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1')
         #context["week"] = Post.objects.filter(date = self.now - datetime.timedelta(days=3))
         #↑日付指定でのデータ取得方法
         #これで日付をずらしてデータを取得できた。
@@ -124,14 +157,16 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
         context["set"] = len(df)
 
         #カレンダーデータ
-        #today = datetime.datetime.now()
         context["today"] = self.now.month
+        #日付情報の取得
+        context["now"] = self.now
+
         cal = calendar.Calendar(firstweekday=6)
         #context["calendar"] = cal.itermonthdays2(this_today.year,this_today.month)
-        context["calendar"] = cal.itermonthdays2(2019,7)
-
+        context["calendar"] = cal.itermonthdays2(self.now.year, self.now.month)
 
         return context
+
 
 #詳細表示
 class ScheduleDetailView(OnlyYouMixin, DetailView):

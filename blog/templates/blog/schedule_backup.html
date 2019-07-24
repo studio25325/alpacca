@@ -9,22 +9,24 @@
 
 スケジュール<br>
 
-foo1：{{ foo1 }}<br>
-moo：{{ moo }}<br>
-
 年：{{ now.year }}
 月：{{ now.month }}
 日：{{ now.day }}
 時：{{ now.hour }}
 分：{{ now.minute }}
 秒：{{ now.second }}
-
 <br><hr><br>
-<a href="{% url 'schedule:next' next %}">前月</a>
-{{ previous }}
-<br>
-<a href="{% url 'schedule:next' next %}">次月</a>
-{{ next }}
+
+{% for new_week in week %}
+    タイトル：{{ new_week.title }}<br>
+    内容{{ new_week.text }}<br>
+    表示フラグ：{{ new_week.show_flag }}<br>
+    予約フラグ：{{ new_week.reservation_flag }}<br>
+    開始時間：{{ new_week.start_time }}<br>
+    終了時間：{{ new_week.end_time }}<br>
+    日付：{{ new_week.date.day }}<br>
+{% endfor %}
+
 <br><hr><br>
 
 DBの件数{{ set }}
@@ -67,13 +69,14 @@ DBの件数{{ set }}
         {% for new_week in week %}
             {% if new_week.date.day == item.0 %}
 
-                <a class="nav-item nav-link" href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
+                <a class="nav-item nav-link" href="{% url 'schedule:detail' new_week.pk %}">タイトル：{{ new_week.title }}</a>
                 内容{{ new_week.text }}<br>
                 表示フラグ：{{ new_week.show_flag }}<br>
                 予約フラグ：{{ new_week.reservation_flag }}<br>
                 開始時間：{{ new_week.start_time }}<br>
                 終了時間：{{ new_week.end_time }}<br>
                 日付：{{ new_week.date.day }}<br>
+                <button type="submit" class="btn btn-info"  onClick="location.href='{% url 'schedule:update' new_week.pk %}'">編集</button>
             {% endif %}
         {% endfor %}
         </td>
