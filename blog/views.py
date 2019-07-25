@@ -38,72 +38,6 @@ class OnlyYouMixin(UserPassesTestMixin):
 
 
 
-class TopPage(TemplateView):
-    template_name = "blog/test.html"
-
-    #テンプレートにデータを渡すにはget_context_dataをオーバーライド
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["foo"] = "bar"
-        return context
-
-
-class ShowList(mixins.WeekWithScheduleMixin, TemplateView):
-    template_name = "blog/week.html"
-    model = Post
-    #1ページの表示件数
-    paginate_by = 5
-    date_field = 'date'
-
-    def get_queryset(self):
-        #通常の記載
-        #return Post.objects.order_by('created_date').reverse()
-        #条件レコードの取得
-        return Post.objects.order_by('created_date').reverse().filter(show_flag='1')
-        #10件までの記載方法
-        #return MyModel.objects.all()[:10]
-
-    #他のモデルからデータ取得
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        #ユーザーグループの取得
-        #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
-        if self.request.user.groups.filter(name='family').exists():
-            context["foo1"] = 'family'
-        else:
-            context["foo1"] = 'common'
-
-        if self.request.user.id == None:
-            context["foo"] = 0
-        else:
-            context["foo"] = 1
-
-        #ユーザー情報の取得
-        context["user"] = super().get_context_data(**kwargs)
-        context["user"] = self.request.user.id
-        context["user"] = self.request.user
-
-        #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
-        if self.request.user.groups.filter(name='family').exists():
-            context["user_flag"] = 'family'
-        else:
-            context["user_flag"] = 'common'
-
-        context["bar"] = Post10.objects.all()[:10] # 他のモデルからデータを取得
-        #context["foo2"] = self.kwargs['pk']
-
-        #カレンダーデータの取得
-        calendar_context = self.get_week_calendar()
-        context.update(calendar_context)
-        context['week_row'] = zip(
-            calendar_context['week_names'],
-            calendar_context['week_days'],
-            calendar_context['week_day_schedules'].values()
-        )
-
-        return context
-
 
 #こいつがメイン表示
 class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
@@ -122,48 +56,74 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
 
     def get_next_month(self, show_month):
         """次月を返す"""
-        show_month = show_month + 1
-        get_test = 6
-        self.set_month = 200
-        return show_month
-        #if date.month == 12:
-        #    return date.replace(year=date.year+1, month=1, day=1)
-        #else:
-        #    return date.replace(month=date.month+1, day=1)
+        if show_month == 12:
+            show_month = 1
+            #show_year = self.now.year
+            #show_year = show_year + 1
+            show_year = self.now.year
+        else:
+            show_month = show_month + 1
+            show_year = self.now.year
+        return show_month, show_year
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context["previous"] = self.get_previous_month(self.now.month)
-        context["next"] = self.get_next_month(self.now.month)
-        #2019/07/24 初期はないけど、再読み込みで見つかるデータを
-        context["previous"] = self.set_month
-        context["moo"] = self.kwargs.get('next')
+        #リンクされた際に表示されるデータの辞書を作成
+        dic_next = {}
+        dic_next["year"] = self.now.year
+        dic_next["month"] = self.kwargs.get('url_next_month')
+        dic_previous = {}
+        dic_previous["year"] = self.now.year
+        dic_previous["month"] = self.kwargs.get('url_previous_month')
+
+        if dic_next["month"] is None:
+            #初期値はデータが空なので、現時点の月を表示
+            dic_next["month"] = self.now.month
+            dic_next["year"] = self.now.year
+        else:
+            #すでにデータがあれば、リンクで受け取った数値を元に、翌月の数字を表示
+            result = self.get_next_month(self.kwargs.get('url_next_month'))
+            dic_next["month"] = result[0]
+            dic_next["year"] = result[1]
+
+        if dic_previous["month"] is None:
+            #初期値はデータが空なので、現時点の月を表示
+            dic_previous["month"] = self.now.month
+            dic_previous["year"] = self.now.year
+            pass
+        else:
+            #すでにデータがあれば、リンクで受け取った数値を元に、翌月の数字を表示
+            result = self.get_previous_month(self.kwargs.get('url_previous_month'))
+            dic_previous["month"] = result[0]
+            dic_previous["year"] = result[1]
+
+        #リンクで受け取った変数を表示してみる
+        context["moo"] = dic_previous
+        context["next"] = dic_next["month"]
 
         #ユーザーグループの取得
         #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
-            context["week"] = Post.objects.order_by('created_date').reverse()
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
         else:
             context["foo1"] = 'common'
-            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1')
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1').filter(date__year=dic_next["year"], date__month=dic_next["month"])
         #context["week"] = Post.objects.filter(date = self.now - datetime.timedelta(days=3))
         #↑日付指定でのデータ取得方法
         #これで日付をずらしてデータを取得できた。
         #今日の日付を中心にdfかリストにappendしてデータを制作？
-        df = Post.objects.all()
-        df = read_frame(df)
-        context["set"] = len(df)
+        #df = Post.objects.all()
+        #df = read_frame(df)
 
-        #カレンダーデータ
-        context["today"] = self.now.month
         #日付情報の取得
         context["now"] = self.now
 
         cal = calendar.Calendar(firstweekday=6)
         #context["calendar"] = cal.itermonthdays2(this_today.year,this_today.month)
-        context["calendar"] = cal.itermonthdays2(self.now.year, self.now.month)
+        context["calendar"] = cal.itermonthdays2(self.now.year, dic_next["month"])
 
         return context
 

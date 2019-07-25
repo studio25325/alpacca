@@ -7,31 +7,11 @@
     </div>
 </div>
 
-スケジュール<br>
-
-foo1：{{ foo1 }}<br>
-moo：{{ moo }}<br>
-
-年：{{ now.year }}
-月：{{ now.month }}
-日：{{ now.day }}
-時：{{ now.hour }}
-分：{{ now.minute }}
-秒：{{ now.second }}
-
-<br><hr><br>
-<a href="{% url 'schedule:next' next %}">前月</a>
-{{ previous }}
-<br>
+ユーザー属性：{{ foo1 }} 　
 <a href="{% url 'schedule:next' next %}">次月</a>
-{{ next }}
 <br><hr><br>
 
-DBの件数{{ set }}
-
-<br><hr><br>
-
-{{ today }}月の予定
+{{ next }}月の予定
 
 <br><hr><br>
 
@@ -66,14 +46,25 @@ DBの件数{{ set }}
 
         {% for new_week in week %}
             {% if new_week.date.day == item.0 %}
-
+                {% if new_week.show_flag == '1' %}
+                    <div class="alert alert-info" role="alert">
+                {% else %}
+                    <div class="alert alert-warning" role="alert">家族のみ表示
+                {% endif %}
                 <a class="nav-item nav-link" href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
                 内容{{ new_week.text }}<br>
-                表示フラグ：{{ new_week.show_flag }}<br>
-                予約フラグ：{{ new_week.reservation_flag }}<br>
+
+                {% if new_week.reservation_flag == '1' %}
+                    予約してない
+                {% else %}
+                    予約済み
+                {% endif %}
+                <br>
+
                 開始時間：{{ new_week.start_time }}<br>
                 終了時間：{{ new_week.end_time }}<br>
                 日付：{{ new_week.date.day }}<br>
+                </div>
             {% endif %}
         {% endfor %}
         </td>
@@ -83,5 +74,12 @@ DBの件数{{ set }}
 {% endfor %}
 
 </table>
+
+年：{{ now.year }}
+月：{{ now.month }}
+日：{{ now.day }}
+時：{{ now.hour }}
+分：{{ now.minute }}
+秒：{{ now.second }}
 
 {% endblock %}
