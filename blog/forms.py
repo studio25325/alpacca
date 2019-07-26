@@ -12,7 +12,7 @@ class BlogForm(forms.ModelForm):
         ('2', '全員表示'),
     )
     CHOICE_2 = (
-        ('1', '非対応'),
+        ('1', '要予約'),
         ('2', '予約済'),
     )
 

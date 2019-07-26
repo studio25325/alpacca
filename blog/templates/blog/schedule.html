@@ -46,10 +46,10 @@
             <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 5 %}
             <div class="weak_2">Sat</div>
-            <div class="mid_1"><br>{{item.0}}</div>
+            <div class="mid_2"><br>{{item.0}}</div>
         {% elif item.1 == 6 %}
             <div class="weak_3">Sun</div>
-            <div class="mid_1"><br>{{item.0}}</div>
+            <div class="mid_3"><br>{{item.0}}</div>
         {% endif %}
         </nobr>
         </td>
@@ -74,9 +74,9 @@
                     <div class="schedule_box_5">
 
                         {% if new_week.reservation_flag == '1' %}
-                            要予約
+                            <div class="big_1">要予約</div>
                         {% else %}
-                            予約済
+                            <div class="big_2">予約済</div>
                         {% endif %}
                     </div>
 

@@ -269,6 +269,22 @@ p {
     color: #666f7e;
     margin: -16px 0px 0px 5px;
 }
+.mid_2 {
+    font-size: 20px;
+    color: #50a9d3;
+    margin: -16px 0px 0px 5px;
+}
+.mid_3 {
+    font-size: 20px;
+    color: #fd716a;
+    margin: -16px 0px 0px 5px;
+}
+.big_1 {
+    color: #fd716a;
+}
+.big_2 {
+
+}
 .now_box {
     text-align: center;
     font-size: 12px;

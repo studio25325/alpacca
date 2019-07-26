@@ -110,7 +110,7 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
             context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
         else:
             context["foo1"] = 'common'
-            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='1').filter(date__year=dic_next["year"], date__month=dic_next["month"])
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='2').filter(date__year=dic_next["year"], date__month=dic_next["month"])
         #context["week"] = Post.objects.filter(date = self.now - datetime.timedelta(days=3))
         #↑日付指定でのデータ取得方法
         #これで日付をずらしてデータを取得できた。
