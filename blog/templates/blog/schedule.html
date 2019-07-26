@@ -2,18 +2,22 @@
 {% block content %}
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="main_box2">
-        <a href="{% url 'schedule:create' %}" >+</a>
+    <div class="main_box3">
+        {{ next }}月の予定
     </div>
 </div>
 
-ユーザー属性：{{ foo1 }} 　
-<a href="{% url 'schedule:next' next %}">次月</a>
-<br><hr><br>
 
-{{ next }}月の予定
+<div class="month_console">
+    <div class="month_controller">
+        <a href="{% url 'schedule:create' %}" >+ Add New</a>
+    </div>
+    <div class="month_controller">
+        <a href="{% url 'schedule:next' next %}">Next</a>
+    </div>
+</div>
 
-<br><hr><br>
+
 
 <table class="table table-striped">
 
@@ -21,24 +25,31 @@
 {% for item in calendar %}
     {% if item.0 != 0 %}
         <tr>
-        <td width="80px">
+        <td>
         <nobr>
 
         <!-- 曜日を記載変換 -->
         {% if item.1 == 0 %}
-            月曜日：{{item.0}}日
+            <div class="weak_1">Mon</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 1 %}
-            火曜日：{{item.0}}日
+            <div class="weak_1">Tue</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 2 %}
-            水曜日：{{item.0}}日
+            <div class="weak_1">Wed</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 3 %}
-            木曜日：{{item.0}}日
+            <div class="weak_1">Thu</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 4 %}
-            金曜日：{{item.0}}日
+            <div class="weak_1">Fri</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 5 %}
-            <font color="red">土曜日：{{item.0}}日</font>
+            <div class="weak_2">Sat</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% elif item.1 == 6 %}
-            <font color="red">日曜日：{{item.0}}日</font>
+            <div class="weak_3">Sun</div>
+            <div class="mid_1"><br>{{item.0}}</div>
         {% endif %}
         </nobr>
         </td>
@@ -47,24 +58,36 @@
         {% for new_week in week %}
             {% if new_week.date.day == item.0 %}
                 {% if new_week.show_flag == '1' %}
-                    <div class="alert alert-info" role="alert">
+                    <div class="schedule_box_1_a">
                 {% else %}
-                    <div class="alert alert-warning" role="alert">家族のみ表示
+                    <div class="schedule_box_1_b">
                 {% endif %}
-                <a class="nav-item nav-link" href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
-                内容{{ new_week.text }}<br>
+                <div class="schedule_box_2">
+                    <a href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
+                </div>
+                <div class="schedule_box_3">
+                    {{ new_week.text }}
+                </div>
 
-                {% if new_week.reservation_flag == '1' %}
-                    予約してない
-                {% else %}
-                    予約済み
-                {% endif %}
+                <div class="schedule_box_4">
+
+                    <div class="schedule_box_5">
+
+                        {% if new_week.reservation_flag == '1' %}
+                            <img src="static/img/reserved_00.png" width="80px" />
+                        {% else %}
+                            <img src="static/img/reserved_01.png" width="80px" />
+                        {% endif %}
+                    </div>
+
+                    <div class="schedule_box_6">
+                        {{ new_week.start_time }}〜{{ new_week.end_time }}
+                    </div>
+
                 <br>
 
-                開始時間：{{ new_week.start_time }}<br>
-                終了時間：{{ new_week.end_time }}<br>
-                日付：{{ new_week.date.day }}<br>
                 </div>
+
             {% endif %}
         {% endfor %}
         </td>
@@ -75,11 +98,26 @@
 
 </table>
 
-年：{{ now.year }}
-月：{{ now.month }}
-日：{{ now.day }}
-時：{{ now.hour }}
-分：{{ now.minute }}
-秒：{{ now.second }}
+<br><br>
+
+<div class="now_box">
+{{ now.year }}年
+{{ now.month }}月
+{{ now.day }}日
+{{ now.hour }}時
+{{ now.minute }}分
+{{ now.second }}秒
+</div>
+
+<br><br><br><br><br><br>
+
+<footer>
+
+    <div  class="user_box">
+        <p>ユーザー属性：{{ foo1 }} </p>
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+
+</footer>
 
 {% endblock %}

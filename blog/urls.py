@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
 
+#画像表示用
+from django.contrib.auth import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 app_name = 'schedule'
 
 urlpatterns = [
@@ -19,3 +24,7 @@ urlpatterns = [
     path('update/<int:pk>/', views.ScheduleUpdateView.as_view(), name='update'),
     path('detail/<int:pk>/', views.ScheduleDetailView.as_view(), name='detail'),
 ]
+
+#画像表示用
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

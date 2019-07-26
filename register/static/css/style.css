@@ -1,25 +1,69 @@
 body {
-    font-family: 'Noto Serif JP', serif;
-    background-color: #C3C7CA;
+    font-family: 'Libre Baskerville', serif;
+    background: linear-gradient(160deg, #f5f4f4, #e1dfdf);
     color: #353535;
 }
 
-.page-header {
-    background-color: #77a0dd;
-    padding: 10px 20px 10px 20px;
+.wrapper {
+  position: relative;
+  flex-direction: column;
+  bottom: 0;
+  min-height: 100vh;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin-top: auto;
+}
+
+.copyright {
+    color: #a5c5e7;
+    font-size: 80%;
     text-align: center;
+    padding: 10px 0px 10px 0px;
+    background: linear-gradient(160deg, #4b81bc, #4873a6);
+}
+
+.user_box {
+    background: linear-gradient(160deg, #53b2d4, #4c98cf);
+    width: 100%;
+    color: #FFFFFF;
+    line-height: 200%;
+    font-size: 12pt;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    -webkit-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+}
+
+.page-header {
+    background: linear-gradient(160deg, #44d0cd, #40c8c2);
+    padding: 8px 0px 8px 16px;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .page-header2 {
-    background-color: #fe646d;
+    background: linear-gradient(160deg, #53b2d4, #4c98cf);
     padding: 30px 20px 20px 20px;
     text-align: center;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 16pt;
+    font-size: 12pt;
+    padding: 4px 0px 0px 0px;
     text-decoration: none;
 }
 
@@ -75,22 +119,44 @@ h2 {
 }
 
 .main_box {
-    background-color: #fed100;
+    background: linear-gradient(160deg, #4b81bc, #4873a6);
     width: 100%;
-    color: #353535;
+    color: #a5c5e7;
     line-height: 200%;
-    font-size: 16pt;
+    font-size: 14pt;
     padding: 20px 20px 20px 20px;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .main_box2 {
-    background-color: #535d5d;
+    background: linear-gradient(160deg, #63539e, #595386);
     width: 100%;
     font-size: 22pt;
     font-weight: 600;
     color: #FFFFFF;
     text-align: center;
     padding: 10px 10px 10px 10px;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.main_box3 {
+    background: linear-gradient(160deg, #63539e, #595386);
+    width: 100%;
+    font-size: 12pt;
+    font-weight: 600;
+    color: #988ad5;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .main_box2 a {
@@ -100,16 +166,24 @@ h2 {
 }
 
 div:nth-child(2n+1) > .mid_box {
-  background-color: #5d93c1;
+  background-color: #edf0f5;
   width: auto;
   color: #353535;
   padding: 20px 20px 20px 20px;
+  -webkit-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  -moz-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  -ms-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
 }
 div:nth-child(2n) > .mid_box {
-  background-color: #6ea5d3;
+  background-color: #dfe4ee;
   width: auto;
   color: #353535;
   padding: 20px 20px 20px 20px;
+  -webkit-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  -moz-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  -ms-filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+  filter:drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
 }
 
 .b_style {
@@ -200,4 +274,101 @@ p {
 .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
     padding-right: 0px !important;
     padding-left: 0px !important;
+}
+
+.weak_1 {
+    font-size: 11px;
+    color: #a6a7ad;
+    margin: 0px 0px 0px 4px;
+}
+.weak_2 {
+    font-size: 11px;
+    color: #50a9d3;
+    margin: 0px 0px 0px 4px;
+}
+.weak_3 {
+    font-size: 11px;
+    color: #fd716a;
+    margin: 0px 0px 0px 4px;
+}
+.weak_4 {
+    font-size: 11px;
+    color: #fd716a;
+    margin: 0px 0px 0px 4px;
+}
+.mid_1 {
+    font-size: 20px;
+    color: #666f7e;
+    margin: -16px 0px 0px 5px;
+}
+.now_box {
+    text-align: center;
+    font-size: 12px;
+    color: #a6a7ad;
+}
+
+.month_console {
+    background: linear-gradient(160deg, #604272, #524364);
+    width: 100%;
+    color: #FFFFFF;
+    line-height: 200%;
+    font-size: 10pt;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 16px 16px 16px;
+}
+
+.month_controller {
+    display: flex;
+}
+.month_controller a {
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: transparent;
+}
+.schedule_box_1_a {
+    width: 100%;
+    margin: -8px 0px 0px -10px;
+}
+.schedule_box_1_b {
+    background-color: rgba(255,255,255,0.4);
+    width: 100%;
+    border: solid 1px #c2c2cc;
+    border-radius: 10px;
+    margin: 0px 6px 6px 0px;
+    padding: 6px 6px 6px 6px;
+}
+.schedule_box_2 {
+    border-bottom: solid 1px #c2c2cc;
+    width: 100%;
+    padding: 6px 0px 6px 0px;
+
+}
+.schedule_box_2 a {
+    color: #187bb4;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: transparent;
+}
+.schedule_box_3 {
+    border-bottom: solid 1px #c2c2cc;
+    width: 100%;
+    padding: 6px 0px 6px 0px;
+}
+.schedule_box_4 {
+    width: 100%;
+    display: flex;
+    justify-content:flex-start;
+    padding: 14px 0px 6px 0px;
+}
+.schedule_box_5 {
+    display: flex;
+    padding: 0px 10px 0px 0px;
+}
+.schedule_box_6 {
+    display: flex;
 }
