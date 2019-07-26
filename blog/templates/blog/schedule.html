@@ -58,9 +58,9 @@
         {% for new_week in week %}
             {% if new_week.date.day == item.0 %}
                 {% if new_week.show_flag == '1' %}
-                    <div class="schedule_box_1_a">
-                {% else %}
                     <div class="schedule_box_1_b">
+                {% else %}
+                    <div class="schedule_box_1_a">
                 {% endif %}
                 <div class="schedule_box_2">
                     <a href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
