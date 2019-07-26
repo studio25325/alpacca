@@ -29,12 +29,13 @@ now = timezone.localtime(timezone.now())
 
 #非ログイン対応
 class OnlyYouMixin(UserPassesTestMixin):
-    """本人か、スーパーユーザーだけユーザーページアクセスを許可する"""
+    """本人か、スタッフユーザーだけアクセスを許可する"""
     raise_exception = False
 
     def test_func(self):
         user = self.request.user
-        return user.is_superuser
+        #return user.is_superuser
+        return user.is_staff
 
 
 
