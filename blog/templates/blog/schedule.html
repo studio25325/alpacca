@@ -98,7 +98,7 @@
 
 </table>
 
-<br><br>
+<br>
 
 <div class="now_box">
 {{ now.year }}年
@@ -109,9 +109,18 @@
 {{ now.second }}秒
 </div>
 
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 <footer>
+
+    <div class="month_console">
+        <div class="month_controller">
+            <a href="{% url 'schedule:create' %}" >+ Add New</a>
+        </div>
+        <div class="month_controller">
+            <a href="{% url 'schedule:next' next %}">Next</a>
+        </div>
+    </div>
 
     <div  class="user_box">
         <p>ユーザー属性：{{ foo1 }} </p>
