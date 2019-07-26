@@ -34,12 +34,20 @@ footer {
     font-size: 12pt;
     text-align: center;
     padding: 10px 10px 10px 10px;
+    -webkit-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.3));
 }
 
 .page-header {
     background: linear-gradient(160deg, #44d0cd, #40c8c2);
     padding: 2px 0px 2px 0px;
     text-align: center;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .page-header2 {
@@ -201,6 +209,10 @@ div:nth-child(2n) > .mid_box {
     margin: 0px 0px 0px 0px;
     padding: 30px 0px 30px 0px;
     text-align: center;
+    -webkit-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -moz-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    -ms-filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+    filter:drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .main_box {
