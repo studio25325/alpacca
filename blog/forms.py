@@ -19,7 +19,10 @@ class BlogForm(forms.ModelForm):
     """定数リストによるプルダウンメニュー"""
     show_flag = forms.ChoiceField(widget=forms.Select, choices=CHOICE_1)
     reservation_flag = forms.ChoiceField(widget=forms.Select, choices=CHOICE_2)
+    #入力フォームを日付と時間に分割する場合
+    #start_time = forms.SplitDateTimeField(label='開始時間')
 
     class Meta:
         model = Post
         fields = ('author', 'title', 'text', 'show_flag', 'reservation_flag', 'start_time', 'end_time', 'date',)
+        #fields = '__all__'

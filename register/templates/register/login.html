@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row">
     <!-- 左側、ログインエリア -->
-    <div class="col-md-6">
+
         <div  class="main_box3">
         <form action="{% url 'register:login' %}" method="POST">
             {{ form.non_field_errors }}
@@ -20,17 +20,17 @@
             {% csrf_token %}
         </form>
         </div>
-        </div>
+
     </div><!-- 左側、ログインエリアおわり -->
 
     <!-- 右側、会員登録エリア -->
-    <div class="col-md-6">
+
         <div class="regi_form2">
             <a href="{% url 'register:user_create' %}" class="btn btn-info btn-lg btn-block" >会員登録</a>
         </div>
         <div class="regi_form2">
             <a href="{% url 'register:password_reset' %}" class="btn btn-info btn-lg btn-block" >パスワードを忘れた方</a>
         </div>
-    </div><!-- 右側、会員登録エリアおわり -->
+
 </div>
 {% endblock %}
