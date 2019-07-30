@@ -11,6 +11,7 @@ class Post(models.Model):
     start_time = models.TimeField('開始時間', default=timezone.now)
     end_time = models.TimeField('終了時間', default=timezone.now)
     date = models.DateField('日付', default=timezone.now)
+
     created_date = models.DateTimeField(
             default=timezone.now)
 

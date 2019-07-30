@@ -2,6 +2,9 @@ from django import forms
 
 from .models import Post
 
+import bootstrap_datepicker_plus as datetimepicker
+
+
 
 
 
@@ -26,3 +29,29 @@ class BlogForm(forms.ModelForm):
         model = Post
         fields = ('author', 'title', 'text', 'show_flag', 'reservation_flag', 'start_time', 'end_time', 'date',)
         #fields = '__all__'
+        widgets = {
+            'date': datetimepicker.DatePickerInput(
+                format='%Y-%m-%d',
+                options={
+                    'locale': 'ja',
+                    'dayViewHeaderFormat': 'YYYY年 MMMM',
+                }
+            ),
+            'start_time': datetimepicker.TimePickerInput(
+                format='%H:%M',
+                options={
+                    'locale': 'ja',
+                }
+
+            ),
+            'end_time': datetimepicker.TimePickerInput(
+                format='%H:%M',
+                options={
+                    'locale': 'ja',
+                }
+
+            ),
+
+
+
+        }
