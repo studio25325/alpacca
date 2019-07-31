@@ -18,7 +18,7 @@ User = get_user_model()
 from django_pandas.io import read_frame
 
 from .forms import (
-    BlogForm,
+    BlogForm, BlogFormEdit,
 )
 
 import calendar
@@ -149,7 +149,7 @@ class ScheduleCreateView(OnlyYouMixin, CreateView):
 class ScheduleUpdateView(OnlyYouMixin, UpdateView):
     model = Post
     template_name = "blog/blog_new.html"
-    form_class = BlogForm
+    form_class = BlogFormEdit
 
     def get_success_url(self):
         return resolve_url('schedule:schedule')

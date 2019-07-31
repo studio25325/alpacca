@@ -8,8 +8,9 @@ class Post(models.Model):
     text = models.TextField()
     show_flag = models.CharField('表示フラグ', max_length=50, default=1)
     reservation_flag = models.CharField('予約フラグ', max_length=50, default=1)
-    start_time = models.TimeField('開始時間', default=timezone.now)
-    end_time = models.TimeField('終了時間', default=timezone.now)
+    #start_time = models.TimeField('開始時間', default=timezone.now)
+    start_time = models.TimeField('開始時間', default='09:00')
+    end_time = models.TimeField('終了時間', default='10:00')
     date = models.DateField('日付', default=timezone.now)
 
     created_date = models.DateTimeField(
