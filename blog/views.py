@@ -59,9 +59,9 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
         """次月を返す"""
         if show_month == 12:
             show_month = 1
-            #show_year = self.now.year
-            #show_year = show_year + 1
             show_year = self.now.year
+            #show_year = show_year + 1
+            #show_year = self.now.year
         else:
             show_month = show_month + 1
             show_year = self.now.year
@@ -148,7 +148,7 @@ class ScheduleCreateView(OnlyYouMixin, CreateView):
 #投稿内容の編集
 class ScheduleUpdateView(OnlyYouMixin, UpdateView):
     model = Post
-    template_name = "blog/blog_new.html"
+    template_name = "blog/blog_edit.html"
     form_class = BlogFormEdit
 
     def get_success_url(self):

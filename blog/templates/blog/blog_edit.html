@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{{ form.media }}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Edit post
+    </div>
+
+    <div class="mid_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    <br /><br /><br />
+    </div>
+</div>
+
+
+
+{% endblock %}
