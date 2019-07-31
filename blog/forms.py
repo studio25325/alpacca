@@ -32,22 +32,31 @@ class BlogForm(forms.ModelForm):
         widgets = {
             'date': datetimepicker.DatePickerInput(
                 format='%Y-%m-%d',
+                attrs={'readonly': 'true'},
                 options={
                     'locale': 'ja',
                     'dayViewHeaderFormat': 'YYYY年 MMMM',
+                    'ignoreReadonly': True,
+                    'allowInputToggle': True,
                 }
             ),
             'start_time': datetimepicker.TimePickerInput(
                 format='%H:%M',
+                attrs={'readonly': 'true'},
                 options={
                     'locale': 'ja',
+                    'ignoreReadonly': True,
+                    'allowInputToggle': True,
                 }
 
             ),
             'end_time': datetimepicker.TimePickerInput(
                 format='%H:%M',
+                attrs={'readonly': 'true'},
                 options={
                     'locale': 'ja',
+                    'ignoreReadonly': True,
+                    'allowInputToggle': True,
                 }
 
             ),

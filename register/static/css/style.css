@@ -351,3 +351,20 @@ p {
 .schedule_box_6 {
     display: flex;
 }
+
+/*　フォーム関連　*/
+.form-control[disabled],
+.form-control[readonly],
+.form-control fieldset[disabled] {
+    background-color: #fff !important;
+    opacity: 1;
+}
+
+.datepicker-days th.dow:first-child,
+    .datepicker-days td:first-child {
+        color: #fd716a;
+    }
+    .datepicker-days th.dow:last-child,
+    .datepicker-days td:last-child {
+        color: #50a9d3;
+    }
