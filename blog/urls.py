@@ -9,14 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 app_name = 'schedule'
 
 urlpatterns = [
-    #path('', views.index, name='index'),
-    #path('', views.TopPage.as_view(), name='top'),
-    #path('show_list/', views.ShowList.as_view(), name='show_list'),
-    #path('detail/<int:pk>/', views.ShowDetailView.as_view(), name='detail'),
-    #path('detail/', views.ShowDetailView.as_view(), name='detail'),
-    #path('week_with_schedule/', views.ShowList.as_view(), name='week_with_schedule'),
     #以下、本番用
-    #path('', views.ScheduleView.as_view(), name='schedule'),
     path('', views.CalView.as_view(), name='schedule'),
     path('<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
     path('move/<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
@@ -30,9 +23,6 @@ urlpatterns = [
     #複数変数の受け渡し方
     path('test/', views.TestView.as_view(), name='test'),
     path('test/<int:set1>/<int:set2>/', views.TestView.as_view(), name='test2'),
-    #新しいカレンダービューを構築
-    #path('cal/', views.CalView.as_view(), name='cal'),
-    #path('cal/<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
 
 ]
 

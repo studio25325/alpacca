@@ -38,6 +38,8 @@ class Top(generic.TemplateView):
         #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
+        elif self.request.user.groups.filter(name='coach').exists():
+            context["foo1"] = 'coach'
         else:
             context["foo1"] = 'common'
 

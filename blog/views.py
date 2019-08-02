@@ -110,6 +110,9 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
             context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
+        elif self.request.user.groups.filter(name='coach').exists():
+            context["foo1"] = 'coach'
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
         else:
             context["foo1"] = 'common'
             context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='2').filter(date__year=dic_next["year"], date__month=dic_next["month"])
@@ -170,6 +173,9 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
         #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
+            context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
+        if self.request.user.groups.filter(name='coach').exists():
+            context["foo1"] = 'coach'
             context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
         else:
             context["foo1"] = 'common'
