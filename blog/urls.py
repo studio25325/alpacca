@@ -12,9 +12,8 @@ urlpatterns = [
     #以下、本番用
     path('', views.CalView.as_view(), name='schedule'),
     path('<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
-    path('move/<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
-
-    path('<int:url_previous_month>/', views.ScheduleView.as_view(), name='previous'),
+    #path('move/<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
+    #path('<int:url_previous_month>/', views.ScheduleView.as_view(), name='previous'),
 
     path('create/', views.ScheduleCreateView.as_view(), name='create'),
     path('update/<int:pk>/', views.ScheduleUpdateView.as_view(), name='update'),

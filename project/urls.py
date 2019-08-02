@@ -21,5 +21,5 @@ urlpatterns = [
     path('', include('register.urls')),
     path('challenge/', include('challenge.urls')),
     path('schedule/', include('blog.urls')),
-    path('test/', include('scheduler.urls')),
+    path('collect/', include('collect.urls')),
 ]

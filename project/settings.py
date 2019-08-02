@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'register',
     'challenge',
     'scheduler',
+    'collect',
 ]
 
 MIDDLEWARE = [

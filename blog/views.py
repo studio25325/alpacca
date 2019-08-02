@@ -40,7 +40,7 @@ class OnlyYouMixin(UserPassesTestMixin):
 
 
 
-#こいつがメイン表示
+#使わなくなったメイン表示
 class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
     template_name = "blog/schedule.html"
     now = timezone.localtime(timezone.now())
@@ -134,7 +134,7 @@ class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
 
 
 
-#受け渡しテスト
+#メイン表示
 class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
     model = Post
     template_name = "blog/cal.html"
@@ -174,7 +174,7 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
         if self.request.user.groups.filter(name='family').exists():
             context["foo1"] = 'family'
             context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
-        if self.request.user.groups.filter(name='coach').exists():
+        elif self.request.user.groups.filter(name='coach').exists():
             context["foo1"] = 'coach'
             context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
         else:
