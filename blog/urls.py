@@ -16,7 +16,9 @@ urlpatterns = [
     #path('detail/', views.ShowDetailView.as_view(), name='detail'),
     #path('week_with_schedule/', views.ShowList.as_view(), name='week_with_schedule'),
     #以下、本番用
-    path('', views.ScheduleView.as_view(), name='schedule'),
+    #path('', views.ScheduleView.as_view(), name='schedule'),
+    path('', views.CalView.as_view(), name='schedule'),
+    path('<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
     path('move/<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
 
     path('<int:url_previous_month>/', views.ScheduleView.as_view(), name='previous'),
@@ -29,8 +31,8 @@ urlpatterns = [
     path('test/', views.TestView.as_view(), name='test'),
     path('test/<int:set1>/<int:set2>/', views.TestView.as_view(), name='test2'),
     #新しいカレンダービューを構築
-    path('cal/', views.CalView.as_view(), name='cal'),
-    path('cal/<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
+    #path('cal/', views.CalView.as_view(), name='cal'),
+    #path('cal/<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
 
 ]
 
