@@ -4,11 +4,13 @@
 
 
 テスト
-{{ foo }}
+{{ foo }}：{{ foo2 }}
+<br />
+<a href="{% url 'schedule:test2' foo foo2 %}">Next10</a>
 
 <br />
 
-<a href="{% url 'show_list' %}" >リストへのリンク</a>
+{{ get1 }}
 
 
 

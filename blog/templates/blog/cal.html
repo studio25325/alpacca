@@ -1,12 +1,12 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
+
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="main_box3">
-        {{ next2 }}：{{ next }}月の予定
+        {{ next_year }}：{{ view_month }}月の予定
     </div>
 </div>
-
 
 <div class="month_console">
     <div class="month_controller">
@@ -15,17 +15,15 @@
         {% endif %}
     </div>
     <div class="month_controller">
-        <!--10の位置が変数-->
-        <a href="{% url 'schedule:next' 10 %}">Next10</a>
-        <!--context["next"]-->
-        <a href="{% url 'schedule:next' next %}">Next</a>
+        <a href="/schedule">Current</a>：
+        <a href="{% url 'schedule:next_m' next_year next_month %}">Next</a>
     </div>
 </div>
 
 
 
-<table class="table table-striped">
 
+<table class="table table-striped">
 
 {% for item in calendar %}
     {% if item.0 != 0 %}
@@ -103,7 +101,9 @@
 
 </table>
 
-<br>
+
+
+
 
 <div class="now_box">
 {{ now.year }}年
@@ -125,7 +125,7 @@
             {% endif %}
         </div>
         <div class="month_controller">
-            <a href="{% url 'schedule:next' next %}">Next</a>
+            <a href="{% url 'schedule:next_m' next_year next_month %}">Next</a>
         </div>
     </div>
 
@@ -135,5 +135,6 @@
     <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
 
 </footer>
+
 
 {% endblock %}

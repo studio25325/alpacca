@@ -17,12 +17,21 @@ urlpatterns = [
     #path('week_with_schedule/', views.ShowList.as_view(), name='week_with_schedule'),
     #以下、本番用
     path('', views.ScheduleView.as_view(), name='schedule'),
-    path('<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
+    path('move/<int:url_next_month>/', views.ScheduleView.as_view(), name='next'),
+
     path('<int:url_previous_month>/', views.ScheduleView.as_view(), name='previous'),
 
     path('create/', views.ScheduleCreateView.as_view(), name='create'),
     path('update/<int:pk>/', views.ScheduleUpdateView.as_view(), name='update'),
     path('detail/<int:pk>/', views.ScheduleDetailView.as_view(), name='detail'),
+
+    #複数変数の受け渡し方
+    path('test/', views.TestView.as_view(), name='test'),
+    path('test/<int:set1>/<int:set2>/', views.TestView.as_view(), name='test2'),
+    #新しいカレンダービューを構築
+    path('cal/', views.CalView.as_view(), name='cal'),
+    path('cal/<int:get_next_year>/<int:get_next_month>/', views.CalView.as_view(), name='next_m'),
+
 ]
 
 #画像表示用
