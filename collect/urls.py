@@ -6,5 +6,6 @@ app_name = 'collect'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('kabuka/', views.kabuka, name='index'),
     #path('', views.CollectView.as_view(), name='collect'),
 ]
