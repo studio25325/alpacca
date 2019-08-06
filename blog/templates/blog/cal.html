@@ -69,7 +69,7 @@
                     <a href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
                 </div>
                 <div class="schedule_box_3">
-                    {{ new_week.text }}
+                    {{ new_week.text | linebreaksbr }}
                 </div>
 
                 <div class="schedule_box_4">
