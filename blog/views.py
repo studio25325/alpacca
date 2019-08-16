@@ -38,102 +38,6 @@ class OnlyYouMixin(UserPassesTestMixin):
         return user.is_staff
 
 
-
-
-#使わなくなったメイン表示
-class ScheduleView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
-    template_name = "blog/schedule.html"
-    now = timezone.localtime(timezone.now())
-    model = Post
-
-    def get_previous_month(self, previous_month):
-        previous_month = previous_month - 1
-        return previous_month
-        #"""前月を返す"""
-        #if date.month == 1:
-        #    return date.replace(year=date.year-1, month=12, day=1)
-        #else:
-        #    return date.replace(month=date.month-1, day=1)
-
-    def get_next_month(self, show_month):
-        """次月を返す"""
-        if show_month == 12:
-            show_month = 1
-            show_year = self.now.year
-            show_year = show_year + 1
-            #show_year = self.now.year
-        else:
-            show_month = show_month + 1
-            show_year = self.now.year
-        return show_month, show_year
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["previous"] = self.get_previous_month(self.now.month)
-        #リンクされた際に表示されるデータの辞書を作成
-        dic_next = {}
-        dic_next["year"] = self.now.year
-        dic_next["month"] = self.kwargs.get('url_next_month')
-        dic_previous = {}
-        dic_previous["year"] = self.now.year
-        dic_previous["month"] = self.kwargs.get('url_previous_month')
-
-        if dic_next["month"] is None:
-            #初期値はデータが空なので、現時点の月を表示
-            dic_next["month"] = self.now.month
-            dic_next["year"] = self.now.year
-        else:
-            #すでにデータがあれば、リンクで受け取った数値を元に、翌月の数字を表示
-            result = self.get_next_month(self.kwargs.get('url_next_month'))
-            dic_next["month"] = result[0]
-            dic_next["year"] = result[1]
-
-        if dic_previous["month"] is None:
-            #初期値はデータが空なので、現時点の月を表示
-            dic_previous["month"] = self.now.month
-            dic_previous["year"] = self.now.year
-            pass
-        else:
-            #すでにデータがあれば、リンクで受け取った数値を元に、翌月の数字を表示
-            result = self.get_previous_month(self.kwargs.get('url_previous_month'), )
-            dic_previous["month"] = result[0]
-            dic_previous["year"] = result[1]
-
-        #リンクで受け取った変数を表示してみる
-        context["moo"] = dic_previous
-        context["next"] = dic_next["month"]
-        context["next2"] = dic_next["year"]
-
-        #ユーザーグループの取得
-        #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
-        if self.request.user.groups.filter(name='family').exists():
-            context["foo1"] = 'family'
-            context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
-        elif self.request.user.groups.filter(name='coach').exists():
-            context["foo1"] = 'coach'
-            context["week"] = Post.objects.order_by('created_date').reverse().filter(date__year=dic_next["year"], date__month=dic_next["month"])
-        else:
-            context["foo1"] = 'common'
-            context["week"] = Post.objects.order_by('created_date').reverse().filter(show_flag='2').filter(date__year=dic_next["year"], date__month=dic_next["month"])
-        #context["week"] = Post.objects.filter(date = self.now - datetime.timedelta(days=3))
-        #↑日付指定でのデータ取得方法
-        #これで日付をずらしてデータを取得できた。
-        #今日の日付を中心にdfかリストにappendしてデータを制作？
-        #df = Post.objects.all()
-        #df = read_frame(df)
-
-        #日付情報の取得
-        context["now"] = self.now
-
-        cal = calendar.Calendar(firstweekday=6)
-        #context["calendar"] = cal.itermonthdays2(this_today.year,this_today.month)
-        context["calendar"] = cal.itermonthdays2(dic_next["year"], dic_next["month"])
-
-        return context
-
-
-
 #メイン表示
 class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
     model = Post
@@ -142,6 +46,10 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        #曜日情報の取得
+        cal = calendar.Calendar(firstweekday=6)
+
 
         context["defailt_year"] = self.now.year
         context["defailt_month"] = self.now.month
@@ -158,6 +66,9 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
             context["next_year"] = context["defailt_year"]
             context["next_month"] = context["defailt_month"] + 1
             context["view_month"] = self.now.month
+
+            #曜日情報の取得
+            context["calendar"] = cal.itermonthdays2(self.now.year, self.now.month)
         #次月処理
         else:
             context["view_month"] = self.kwargs.get('get_next_month')
@@ -168,6 +79,9 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
             if context["next_month"] == 13:
                 context["next_month"] = 1
                 context["next_year"] = context["next_year"] + 1
+
+            #曜日情報の取得
+            context["calendar"] = cal.itermonthdays2(dic_next["year"], dic_next["month"])
 
         #ユーザーグループの取得
         #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
@@ -183,9 +97,6 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
 
         #日付情報の取得
         context["now"] = self.now
-
-        cal = calendar.Calendar(firstweekday=6)
-        context["calendar"] = cal.itermonthdays2(2019, 8)
 
         return context
 

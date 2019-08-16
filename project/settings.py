@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'challenge',
     'scheduler',
     'collect',
+    'menu',
 ]
 
 MIDDLEWARE = [
