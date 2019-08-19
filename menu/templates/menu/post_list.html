@@ -1,19 +1,103 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>ajax</title>
-    </head>
+{% extends 'menu/base.html' %}
 
-    <body>
-        <div>
-            <button>もっと読む</button>
-            <div id="result"></div>
-            {{ foo }}<br>
-            {% for item in menu %}
-                {{ item.title }}：{{ item.memo }}<br>
-            {% endfor %}
-        </div>
+{% block content %}
+
+
+<div class="row m-2">
+  <div class="col">
+    <div class="mid_box1 h-100">
+        <div class="menu_midashi">買い物リストA</div>
+        <a href="{% url 'menu:update' list_a.pk %}">{{ list_a.memo | linebreaksbr }}</a>
+        <br>
+
+        <button>もっと読む</button>
+        <div id="result"></div>
+
+    </div>
+  </div>
+  <div class="col">
+    <div class="mid_box2 h-100">
+        <div class="menu_midashi">買い物リストB</div>
+        <a href="{% url 'menu:update' list_b.pk %}">{{ list_b.memo | linebreaksbr }}</a>
+        <br>
+
+        投稿番号{{ list_a.pk }}<br>
+
+    </div>
+  </div>
+</div>
+
+<div class="mid_box5">
+    <div class="menu_midashi">今！買い足すもの</div>
+    <a href="{% url 'menu:update' list_add.pk %}">{{ list_add.memo | linebreaksbr }}</a>
+</div>
+
+
+
+  <div class="mid_box3">
+    <div class="menu_midashi">土曜日</div>
+    <a href="{% url 'menu:update' menu_sat.pk %}">{{ menu_sat.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box4">
+    <div class="menu_midashi">日曜日</div>
+    <a href="{% url 'menu:update' menu_sun.pk %}">{{ menu_sun.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box3">
+    <div class="menu_midashi">月曜日</div>
+    <a href="{% url 'menu:update' menu_mon.pk %}">{{ menu_mon.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box4">
+    <div class="menu_midashi">火曜日</div>
+    <a href="{% url 'menu:update' menu_tue.pk %}">{{ menu_tue.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box3">
+    <div class="menu_midashi">水曜日</div>
+    <a href="{% url 'menu:update' menu_wed.pk %}">{{ menu_wed.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box4">
+    <div class="menu_midashi">木曜日</div>
+    <a href="{% url 'menu:update' menu_thu.pk %}">{{ menu_thu.memo | linebreaksbr }}</a>
+  </div>
+  <div class="mid_box3">
+    <div class="menu_midashi">金曜日</div>
+    <a href="{% url 'menu:update' menu_fri.pk %}">{{ menu_fri.memo | linebreaksbr }}</a>
+  </div>
+
+
+
+<div class="row m-2">
+  <div class="col">
+    <div class="mid_box1 h-100">
+        <div class="menu_midashi">冷蔵庫</div>
+        <a href="{% url 'menu:update' refrigerator.pk %}">{{ refrigerator.memo | linebreaksbr }}</a>
+    </div>
+  </div>
+  <div class="col">
+    <div class="mid_box2 h-100">
+        <div class="menu_midashi">冷凍庫</div>
+        <a href="{% url 'menu:update' freezer.pk %}">{{ freezer.memo | linebreaksbr }}</a>
+    </div>
+  </div>
+</div>
+
+
+{{ foo }}
+
+
+<div class="month_console">
+    <div class="month_controller">
+        aaa
+    </div>
+    <div class="month_controller">
+        bbb
+    </div>
+</div>
+
+
+
+
+
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -24,10 +108,12 @@
                         $("#message").css("color", "red");
                     });
                 });
-
-
-
             });
         </script>
-    </body>
-</html>
+
+
+
+
+
+
+{% endblock %}
