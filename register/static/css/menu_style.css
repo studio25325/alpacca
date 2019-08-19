@@ -156,12 +156,12 @@ div:nth-child(2n) > .mid_box {
 .mid_box1 {
     padding: 20px 20px 20px 20px;
     margin: 0px 3px 0px 0px;
-    background-color: #dfe4ee;
+    background-color: #adbfe2;
 }
 .mid_box2 {
     padding: 20px 20px 20px 20px;
     margin: 0px 0px 0px 3px;
-    background-color: #dfe4ee;
+    background-color: #adbfe2;
 }
 .mid_box3 {
     padding: 20px 20px 20px 20px;
@@ -177,12 +177,26 @@ div:nth-child(2n) > .mid_box {
 }
 .mid_box5 {
     padding: 20px 20px 20px 20px;
-    margin: 0px 0px 0px 0px;
-    background-color: #dfe4ee;
+    margin: 0px 0px 10px 0px;
+    background-color: #e7c9d1;
     width: auto;
 }
 .menu_midashi {
     font-size: 12px;
+    margin: 0px 0px 6px 0px;
+    padding: 0px 0px 2px 0px;
+    border-bottom: thin solid #ffffff;
+}
+.menu_midashi1 {
+    font-size: 12px;
+    color: #50a9d3;
+    margin: 0px 0px 6px 0px;
+    padding: 0px 0px 2px 0px;
+    border-bottom: thin solid #ffffff;
+}
+.menu_midashi2 {
+    font-size: 12px;
+    color: #fd716a;
     margin: 0px 0px 6px 0px;
     padding: 0px 0px 2px 0px;
     border-bottom: thin solid #ffffff;
