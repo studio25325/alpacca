@@ -48,6 +48,8 @@ class MainView(TemplateView):
         context["refrigerator"] = set[0]
         set = Menu.objects.filter(title='l').filter(show_flag='1')
         context["freezer"] = set[0]
+        set = Menu.objects.filter(title='m').filter(show_flag='1')
+        context["menu_hold"] = set[0]
 
         return context
 
