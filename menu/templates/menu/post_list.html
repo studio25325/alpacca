@@ -8,21 +8,12 @@
     <div class="mid_box1 h-100">
         <div class="menu_midashi">買い物リストA</div>
         <a href="{% url 'menu:update' list_a.pk %}">{{ list_a.memo | linebreaksbr }}</a>
-        <br>
-
-        <button>もっと読む</button>
-        <div id="result"></div>
-
     </div>
   </div>
   <div class="col">
     <div class="mid_box2 h-100">
         <div class="menu_midashi">買い物リストB</div>
         <a href="{% url 'menu:update' list_b.pk %}">{{ list_b.memo | linebreaksbr }}</a>
-        <br>
-
-        投稿番号{{ list_a.pk }}<br>
-
     </div>
   </div>
 </div>
@@ -85,7 +76,10 @@
 </div>
 
 
-{{ foo }}
+{{ foo }}<br>
+投稿番号{{ list_a.pk }}<br>
+<button>もっと読む</button>
+<div id="result"></div>
 
 
 <div class="month_console">
