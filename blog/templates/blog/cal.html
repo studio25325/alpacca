@@ -66,7 +66,7 @@
                     <div class="schedule_box_1_a">
                 {% endif %}
                 <div class="schedule_box_2">
-                    <a href="{% url 'schedule:update' new_week.pk %}">タイトル：{{ new_week.title }}</a>
+                    <a href="{% url 'schedule:update' new_week.pk %}">{{ new_week.title }}</a>
                 </div>
                 <div class="schedule_box_3">
                     {{ new_week.text | linebreaksbr }}

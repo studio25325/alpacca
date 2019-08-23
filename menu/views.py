@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect, resolve_url
 from .models import Menu
 from django.utils import timezone
@@ -54,8 +54,15 @@ class MainView(TemplateView):
         return context
 
     #Ajax読み込み処理
-    def more(request):
-        return render(request, 'menu/show.html')
+    def more(request, ):
+        request.test = "test1"
+        a = Menu.objects.filter(title='a').filter(show_flag='1')
+        request.test = a[0]
+        model = get_object_or_404(Menu, pk=1)
+        return render(request, 'menu/show.html', )
+
+
+
 
 
 #投稿内容の編集
