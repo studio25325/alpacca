@@ -83,7 +83,7 @@ class BlogFormEdit(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'reservation_flag', 'start_time', 'end_time', 'date',)
+        fields = ('title', 'text', 'reservation_flag', 'start_time', 'end_time', 'date', )
         #fields = '__all__'
         widgets = {
             'date': datetimepicker.DatePickerInput(

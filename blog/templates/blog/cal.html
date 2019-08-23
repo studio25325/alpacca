@@ -87,6 +87,12 @@
                         {{ new_week.start_time }}〜{{ new_week.end_time }}
                     </div>
 
+                    {% if foo1 == 'family' %}
+                    <div class="schedule_box_6">
+                        ｜<a href="{% url 'schedule:delete' new_week.pk %}">予定の削除</a>
+                    </div>
+                    {% endif %}
+
                 <br>
 
                 </div>

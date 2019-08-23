@@ -18,6 +18,7 @@ urlpatterns = [
     path('create/', views.ScheduleCreateView.as_view(), name='create'),
     path('update/<int:pk>/', views.ScheduleUpdateView.as_view(), name='update'),
     path('detail/<int:pk>/', views.ScheduleDetailView.as_view(), name='detail'),
+    path('delete/<int:pk>/', views.ScheduleDeleteView.as_view(), name='delete'),
 
     #複数変数の受け渡し方
     path('test/', views.TestView.as_view(), name='test'),

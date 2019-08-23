@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{{ form.media }}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Delete post
+    </div>
+
+    <div class="del_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <br><br>
+        本当に予定を削除しても構いませんか？<br><br><br>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-default">予定を削除</button>
+    </form>
+    <br />
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -153,6 +153,15 @@ div:nth-child(2n) > .mid_box {
   padding: 20px 20px 20px 20px;
 }
 
+.del_box {
+    background-color: #edf0f5;
+    width: auto;
+    color: #353535;
+    padding: 20px 20px 20px 20px;
+    height: 500px;
+    text-align: center;
+}
+
 .b_style {
     background-color: #91bea3;
     padding: 12px 24px;

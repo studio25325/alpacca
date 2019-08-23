@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect, resolve_url
 import datetime
 from django.views.generic import (
-    TemplateView, ListView, DetailView, CreateView, UpdateView,
+    TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView,
 )
 from .models import Post
 from challenge.models import Post10
@@ -144,6 +144,15 @@ class ScheduleUpdateView(OnlyYouMixin, UpdateView):
     model = Post
     template_name = "blog/blog_edit.html"
     form_class = BlogFormEdit
+
+    def get_success_url(self):
+        return resolve_url('schedule:schedule')
+
+
+#投稿の削除
+class ScheduleDeleteView(OnlyYouMixin, DeleteView):
+    model = Post
+    template_name = "blog/blog_delete.html"
 
     def get_success_url(self):
         return resolve_url('schedule:schedule')
