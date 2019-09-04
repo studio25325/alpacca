@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 def index(request):
 
     # アクセスするURL
-    url = "http://www.nikkei.com/".format(sys.argv[1])
+    url = "http://www.nikkei.com/"
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
     }
