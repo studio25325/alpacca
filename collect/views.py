@@ -3,16 +3,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 import urllib.request, urllib.error
+import urllib.request
+import sys
 from bs4 import BeautifulSoup
 
 
 def index(request):
 
     # アクセスするURL
-    url = "http://www.nikkei.com/"
+    url = "http://www.nikkei.com/".format(sys.argv[1])
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
+    }
+    request_set = urllib.request.Request(url, headers=headers)
+    html = urllib.request.urlopen(request_set)
 
     # URLにアクセスする htmlが帰ってくる → <html><head><title>経済、株価、ビジネス、政治のニュース:日経電子版</title></head><body....
-    html = urllib.request.urlopen(url=url)
+    #html = urllib.request.urlopen(url=url)
     # htmlをBeautifulSoupで扱う
     soup = BeautifulSoup(html, "html.parser")
     # タイトル要素を取得する → <title>経済、株価、ビジネス、政治のニュース:日経電子版</title>

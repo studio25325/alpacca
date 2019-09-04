@@ -13,8 +13,8 @@ from .forms import (
 def ajax(request):
     return render(request, 'menu/post_list.html')
 
-
-class MainView(TemplateView):
+#class MainView(TemplateView):
+class MainView(ListView):
     model = Menu
     template_name = "menu/post_list.html"
     now = timezone.localtime(timezone.now())
@@ -54,13 +54,35 @@ class MainView(TemplateView):
         return context
 
     #Ajax読み込み処理
-    def more(request, ):
-        request.test = "test1"
-        a = Menu.objects.filter(title='a').filter(show_flag='1')
-        request.test = a[0]
-        model = get_object_or_404(Menu, pk=1)
-        return render(request, 'menu/show.html', )
+    #def more(request, ):
+    #    request.test = "test1"
+    #    a = Menu.objects.filter(title='a').filter(show_flag='1')
+    #    request.test = a[0]
+    #    model = get_object_or_404(Menu, pk=1)
+    #    return render(request, 'menu/show.html', )
 
+
+#Ajax読み込み処理
+def more(request, ):
+    c = MenuUpdateView
+    request.test = "test1"
+    #a = Menu.objects.filter(title='a').filter(show_flag='1')
+    #request.test = a[0]
+    model = get_object_or_404(Menu, pk=1)
+
+    model = Menu
+    template_name = "menu/menu_edit.html"
+    form_class = MenuFormEdit
+
+    post = get_object_or_404(Menu, pk=1)
+    form = MenuFormEdit(instance=post)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.save()
+    else:
+        form = MenuFormEdit(instance=post)
+
+    return render(request, 'menu/show.html', {'form' : form} )
 
 
 
