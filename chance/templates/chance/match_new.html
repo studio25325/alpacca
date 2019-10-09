@@ -1,0 +1,39 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+
+<script type="text/javascript" language="javascript">
+
+    window.onload = function() {
+        document.getElementById("id_author").style.display ="none";
+        document.getElementById("id_author").style.visibility ="hidden";
+    }
+
+    function onButtonClick1() {
+         target = document.getElementById("id_match_id");
+         target.value = '0';
+    }
+
+    function onButtonClick18() {
+         target = document.getElementById("id_shot");
+         target.value = '6';
+    }
+</script>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        New GAME
+    </div>
+
+    <div class="mid_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    <br /><br /><br />
+    </div>
+</div>
+
+
+{% endblock %}

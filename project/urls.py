@@ -23,4 +23,6 @@ urlpatterns = [
     path('schedule/', include('blog.urls')),
     path('collect/', include('collect.urls')),
     path('menu/', include('menu.urls')),
+    path('coin/', include('coin.urls')),
+    path('chance/', include('chance.urls')),
 ]

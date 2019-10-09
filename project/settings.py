@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'scheduler',
     'collect',
     'menu',
+    'coin',
+    'chance',
 ]
 
 MIDDLEWARE = [

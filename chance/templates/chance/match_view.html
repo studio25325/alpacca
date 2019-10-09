@@ -1,0 +1,151 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+
+<script type="text/javascript" language="javascript">
+
+    window.onload = function() {
+
+    }
+
+    function add_stroke() {
+         target = document.getElementById("id_stroke");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_stroke() {
+         target = document.getElementById("id_stroke");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+    function add_stroke_error() {
+         target = document.getElementById("id_stroke_error");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_stroke_error() {
+         target = document.getElementById("id_stroke_error");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+
+    function add_service() {
+         target = document.getElementById("id_service");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_service() {
+         target = document.getElementById("id_service");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+    function add_service_error() {
+         target = document.getElementById("id_service_error");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_service_error() {
+         target = document.getElementById("id_service_error");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+
+    function add_receive() {
+         target = document.getElementById("id_receive");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_receive() {
+         target = document.getElementById("id_receive");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+    function add_receive_error() {
+         target = document.getElementById("id_receive_error");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_receive_error() {
+         target = document.getElementById("id_receive_error");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+
+    function add_net() {
+         target = document.getElementById("id_net");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_net() {
+         target = document.getElementById("id_net");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+    function add_net_error() {
+         target = document.getElementById("id_net_error");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_net_error() {
+         target = document.getElementById("id_net_error");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+</script>
+
+
+<p id="message">メッセージですよ〜</p>
+
+{{ player }} VS {{ opponent }}
+{{ created_date }}
+<hr>
+{{ game_count1 }} - {{ game_count2 }}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        New post
+    </div>
+
+    <div class="mid_box">
+
+
+        <input type="button" value="+" onclick="add_service();" />サービス
+        <input type="button" value="-" onclick="take_service();" />
+        <hr>
+        <input type="button" value="+" onclick="add_service_error();" />フォルト
+        <input type="button" value="-" onclick="take_service_error();" />
+        <hr>
+        <input type="button" value="+" onclick="add_receive();" />リターン
+        <input type="button" value="-" onclick="take_receive();" />
+        <hr>
+        <input type="button" value="+" onclick="add_receive_error();" />リターンミス
+        <input type="button" value="-" onclick="take_receive_error();" />
+        <hr>
+        <input type="button" value="+" onclick="add_stroke();" />ストローク
+        <input type="button" value="-" onclick="take_stroke();" />
+        <hr>
+        <input type="button" value="+" onclick="add_stroke_error();" />ストロークミス
+        <input type="button" value="-" onclick="take_stroke_error();" />
+        <hr>
+        <input type="button" value="+" onclick="add_net();" />ネットプレー
+        <input type="button" value="-" onclick="take_net();" />
+        <hr>
+        <input type="button" value="+" onclick="add_net_error();" />ネットプレーミス
+        <input type="button" value="-" onclick="take_net_error();" />
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    <br /><br /><br />
+    <a href="{% url 'chance:chance' %}" >Finish</a>
+    <hr>
+    サービス成功率：{{ probability_service|floatformat }}%<br>
+    リターン成功率：{{ probability_receive|floatformat }}%<br>
+    ストローク成功率：{{ probability_stroke|floatformat }}%<br>
+    ネットプレー成功率：{{ probability_net|floatformat }}%<br>
+    </div>
+</div>
+
+
+{% endblock %}
