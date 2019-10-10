@@ -40,6 +40,7 @@ class MainView(OnlyYouMixin, TemplateView):
     now = timezone.localtime(timezone.now())
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["now"] = self.now
 
         context["foo"] = 10
 
@@ -108,9 +109,11 @@ class MatchView(OnlyYouMixin, CreateView):
 class MatchDetailView(OnlyYouMixin, DetailView):
     model = CMatch
     template_name = "chance/match_detail.html"
+    now = timezone.localtime(timezone.now())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["now"] = self.now
 
         #遷移元の引数を確認
         over_id = self.kwargs['pk']

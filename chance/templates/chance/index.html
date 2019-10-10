@@ -5,31 +5,46 @@
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="main_box">
-        Edit post
+        Match History
     </div>
 
-    <div class="mid_box">
-        <ul>
-            {% for post in posts %}
-            <li><a href="{% url 'chance:match_detail' post.pk %}">{{ post.id }}：{{ post.created_date }}：{{ post.player }} vs {{ post.opponent }}</a></li>
-            {% endfor %}
-        </ul>
-        {{ post }}
+    <table class="table table-striped">
+        {% for post in posts %}
+        <tr>
+            <td>
+                <div class="weak_1">{{ post.created_date }}</div>
+                <a href="{% url 'chance:match_detail' post.pk %}"> {{ post.player }} vs {{ post.opponent }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
-
-    <br /><br /><br />
-    </div>
 </div>
 
 
+
+<div class="now_box">
+    <a class="btn-circle-stitch" href="{% url 'chance:new_match' %}" role="button">Keep a log</a>
+</div>
+
+<br><br>
+
 <footer>
-
     <div  class="user_box">
-        <div style="text-align:center; font-size:80%; "><a href="{% url 'chance:new_match' %}" >GAME START</a></div>
 
+        <div style="text-align:center; font-size:80%; ">
+            <div class="weak_5">
+            {{ now.year }}年
+            {{ now.month }}月
+            {{ now.day }}日
+            {{ now.hour }}時
+            {{ now.minute }}分
+            {{ now.second }}秒
+            </div>
+        </div>
     </div>
     <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
-
 </footer>
+
 
 {% endblock %}

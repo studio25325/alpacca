@@ -312,6 +312,11 @@ p {
     color: #fd716a;
     margin: 0px 0px 0px 4px;
 }
+.weak_5 {
+    font-size: 9px;
+    color: #ffffff;
+    margin: 0px 0px 0px 4px;
+}
 .mid_1 {
     font-size: 20px;
     color: #666f7e;
@@ -409,6 +414,80 @@ p {
     opacity: 1;
 }
 
+.form_c_00 {
+    border:0 !important;
+    padding:10px !important;
+    color:#aaa !important;
+    border:solid 1px #ccc !important;
+    margin:0 0 20px !important;
+    width:300px !important;
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+}
+.form_c_01 {
+    border:0 !important;
+    padding:10px !important;
+    color:#6a6e72 !important;
+    border:solid 1px #ccc !important;
+    margin:0 0 16px !important;
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+}
+.form_c_02 {
+    border:0 !important;
+    padding:10px !important;
+    color:#6a6e72 !important;
+    border:solid 1px #ccc !important;
+    margin:0 0 16px !important;
+    width: 60px !important;
+    height: 60px !important;
+    text-align: center !important;
+    -webkit-border-radius: 30px !important;
+    -moz-border-radius: 30px !important;
+    border-radius: 30px !important;
+}
+.form_c_03 {
+    border:0 !important;
+    padding:10px !important;
+    color:#6a6e72 !important;
+    border:solid 1px #ccc !important;
+    margin:0 0 16px !important;
+    width: 60px !important;
+    height: 60px !important;
+    text-align: center !important;
+    -webkit-border-radius: 30px !important;
+    -moz-border-radius: 30px !important;
+    border-radius: 30px !important;
+}
+.form_b_01 {
+    border:0 !important;
+    padding:4px !important;
+    color:#fff !important;
+    border:solid 1px #d3dee8 !important;
+    margin:0 0 16px !important;
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+
+    display: inline-block;
+    text-decoration: none;
+    background: #87befd;
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 5px #87befd;
+    border: dashed 1px #FFF;
+}
+.b_box {
+    padding: 2px 6px 0 0;
+    width: auto;
+    text-align: right;
+    color: #a6a7ad;
+    margin:0 0 0 auto !important;
+}
+
 .datepicker-days th.dow:first-child,
     .datepicker-days td:first-child {
         color: #fd716a;
@@ -496,4 +575,27 @@ p {
 }
 .input-group {
     margin-bottom: 16px;
+}
+
+
+.btn-circle-stitch {
+  display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 140px;
+  height: 140px;
+  line-height: 140px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 5px #87befd;
+  border: dashed 1px #FFF;
+  transition: .4s;
+}
+
+.btn-circle-stitch:hover {
+  background: #668ad8;
+  text-decoration: none;
+  box-shadow: 0px 0px 0px 5px #668ad8;
 }

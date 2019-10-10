@@ -1,6 +1,8 @@
 {% extends 'chance/base.html' %}
 
 {% block content %}
+<!--フォームコントロール-->
+{% load widget_tweaks %}
 
 <script type="text/javascript" language="javascript">
 
@@ -107,10 +109,19 @@
     </div>
 
     <div class="mid_box">
+        <form method="POST" class="post-form">{% csrf_token %}
+            <table>
+                <tr>
+                    <td>サービス</td>
+                    <td>
+                        <input class="form_c_03" type="button" value="+" onclick="add_service();" />
+                        {{ form.service|add_class:'form_c_02' }}
+                        <input class="form_c_03" type="button" value="-" onclick="take_service();" />
+                    </td>
+                </tr>
+            </table>
 
 
-        <input type="button" value="+" onclick="add_service();" />サービス
-        <input type="button" value="-" onclick="take_service();" />
         <hr>
         <input type="button" value="+" onclick="add_service_error();" />フォルト
         <input type="button" value="-" onclick="take_service_error();" />
@@ -133,9 +144,24 @@
         <input type="button" value="+" onclick="add_net_error();" />ネットプレーミス
         <input type="button" value="-" onclick="take_net_error();" />
 
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+
+        {{ form.author|add_class:'form_c_01' }}
+        {{ form.game_id|add_class:'form_c_01' }}
+        {{ form.stroke|add_class:'form_c_01' }}
+        {{ form.stroke_error|add_class:'form_c_01' }}
+
+
+        {{ form.service_error|add_class:'form_c_01' }}
+        {{ form.receive|add_class:'form_c_01' }}
+        {{ form.receive_error|add_class:'form_c_01' }}
+
+        {{ form.net|add_class:'form_c_01' }}
+        {{ form.net_error|add_class:'form_c_01' }}
+        {{ form.games|add_class:'form_c_01' }}
+        {{ form.created_date|add_class:'form_c_01' }}
+        <div class="b_box">
+        <button type="submit" class="form_b_01">Save</button>
+        </div>
     </form>
     <br /><br /><br />
     <a href="{% url 'chance:chance' %}" >Finish</a>
