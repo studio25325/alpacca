@@ -7,8 +7,6 @@
 <script type="text/javascript" language="javascript">
 
     window.onload = function() {
-        document.getElementById("id_author").style.display ="none";
-        document.getElementById("id_author").style.visibility ="hidden";
     }
 
     function onButtonClick1() {
@@ -30,7 +28,6 @@
 
     <div class="mid_box">
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.author|add_class:'form_c_01' }}
         {{ form.player|add_class:'form_c_01' }}
         {{ form.opponent|add_class:'form_c_01' }}
         {{ form.created_date|add_class:'form_c_01' }}

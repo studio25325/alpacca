@@ -21,7 +21,7 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = CMatch
-        fields = ('author', 'player', 'opponent', 'created_date',)
+        fields = ('player', 'opponent', 'created_date',)
         #fields = '__all__'
 
 
@@ -48,5 +48,5 @@ class GameForm(forms.ModelForm):
 
     class Meta:
         model = CGame
-        fields = ('author', 'game_id', 'stroke', 'stroke_error', 'service', 'service_error', 'receive', 'receive_error', 'net', 'net_error', 'games', 'created_date',)
+        fields = ('game_id', 'stroke', 'stroke_error', 'service', 'service_error', 'receive', 'receive_error', 'net', 'net_error', 'games', 'created_date',)
         #fields = '__all__'

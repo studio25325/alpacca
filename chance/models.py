@@ -3,7 +3,6 @@ from django.utils import timezone
 
 
 class CMatch(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, default='alpacca')
     player = models.CharField(max_length=100, default='大凱')
     opponent = models.CharField(max_length=100, default='対戦相手')
     created_date = models.DateTimeField(default=timezone.now)
@@ -17,7 +16,6 @@ class CMatch(models.Model):
 
 
 class CGame(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     game_id = models.CharField(max_length=200, default=1)
     stroke = models.IntegerField(max_length=100, default=0)
     stroke_error = models.IntegerField(max_length=100, default=0)

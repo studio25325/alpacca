@@ -68,6 +68,8 @@ class MatchView(OnlyYouMixin, CreateView):
     now = timezone.localtime(timezone.now())
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["game_count1"] = 0
+        context["game_count2"] = 0
 
         #直近登録の試合情報を取得
         #set = CMatch.objects.filter(title='a').filter(show_flag='1')

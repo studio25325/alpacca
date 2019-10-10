@@ -450,16 +450,52 @@ p {
 }
 .form_c_03 {
     border:0 !important;
-    padding:10px !important;
+    padding:0px !important;
     color:#6a6e72 !important;
     border:solid 1px #ccc !important;
-    margin:0 0 16px !important;
-    width: 60px !important;
-    height: 60px !important;
+    margin:0 0 0px !important;
+    width: 40px !important;
+    height: 40px !important;
     text-align: center !important;
     -webkit-border-radius: 30px !important;
     -moz-border-radius: 30px !important;
     border-radius: 30px !important;
+}
+.form_c_04 {
+    border:0 !important;
+    padding:4px !important;
+    color:#fff !important;
+    border:solid 1px #d3dee8 !important;
+    margin:0px 10px 0px 0px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+    display: inline-block;
+    text-decoration: none;
+    background: #8dcbe5;
+    width: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 5px #8dcbe5;
+    border: dashed 1px #FFF;
+}
+.form_c_05 {
+    border:0 !important;
+    padding:4px !important;
+    color:#fff !important;
+    border:solid 1px #edd1da !important;
+    margin:0px 10px 0px 0px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+    display: inline-block;
+    text-decoration: none;
+    background: #e480a1;
+    width: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 5px #e480a1;
+    border: dashed 1px #FFF;
 }
 .form_b_01 {
     border:0 !important;
@@ -486,6 +522,16 @@ p {
     text-align: right;
     color: #a6a7ad;
     margin:0 0 0 auto !important;
+}
+.inline-block00 {
+    display: inline-block;        /* インラインブロック要素にする */
+    padding: 0px 0px 0px 0px;
+}
+.inline-block01 {
+    display: inline-block;        /* インラインブロック要素にする */
+}
+.form_box {
+    padding: 20px;
 }
 
 .datepicker-days th.dow:first-child,
