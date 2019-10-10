@@ -11,8 +11,8 @@
         document.getElementById("id_receive_off").style.display ="none";
         document.getElementById("id_stroke_off").style.display ="none";
         document.getElementById("id_net_off").style.display ="none";
-        target = document.getElementById("id_author");
-        target.value = 'admin';
+        document.getElementById("id_game_id").style.display ="none";
+        document.getElementById("id_created_date").style.display ="none";
     }
 
     function add_stroke() {
@@ -275,12 +275,13 @@
     </form>
 
     <div class="mid_box">
-        <a href="{% url 'chance:chance' %}" >Finish</a>
-        <hr>
         サービス成功率：{{ probability_service|floatformat }}%<br>
         リターン成功率：{{ probability_receive|floatformat }}%<br>
         ストローク成功率：{{ probability_stroke|floatformat }}%<br>
         ネットプレー成功率：{{ probability_net|floatformat }}%<br>
+        <div class="b_box">
+            <a href="{% url 'chance:chance' %}" ><button type="submit" class="form_b_01">Finish</button></a>
+        </div>
     </div>
 
 </div>

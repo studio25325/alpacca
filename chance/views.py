@@ -90,10 +90,10 @@ class MatchView(OnlyYouMixin, CreateView):
             context["game_count2"] = df_game_count2
 
             #成功率の算出
-            context["probability_stroke"] = df["stroke_error"].sum() / df["stroke"].sum() * 100
-            context["probability_service"] = df["service_error"].sum() / df["service"].sum() * 100
-            context["probability_receive"] = df["receive_error"].sum() / df["receive"].sum() * 100
-            context["probability_net"] = df["net_error"].sum() / df["net"].sum() * 100
+            context["probability_stroke"] = 100 - (df["stroke_error"].sum() / df["stroke"].sum() * 100)
+            context["probability_service"] = 100 - (df["service_error"].sum() / df["service"].sum() * 100)
+            context["probability_receive"] = 100 - (df["receive_error"].sum() / df["receive"].sum() * 100)
+            context["probability_net"] = 100 - (df["net_error"].sum() / df["net"].sum() * 100)
 
         context["player"] = set.player
         context["opponent"] = set.opponent
@@ -107,7 +107,8 @@ class MatchView(OnlyYouMixin, CreateView):
         return resolve_url('chance:match_view')
 
 
-#試合登録フォーム
+
+#試合詳細表示ーー
 class MatchDetailView(OnlyYouMixin, DetailView):
     model = CMatch
     template_name = "chance/match_detail.html"
@@ -141,10 +142,19 @@ class MatchDetailView(OnlyYouMixin, DetailView):
         context["game_count2"] = df_game_count2
 
         #成功率の算出
-        context["probability_stroke"] = df["stroke_error"].sum() / df["stroke"].sum() * 100
-        context["probability_service"] = df["service_error"].sum() / df["service"].sum() * 100
-        context["probability_receive"] = df["receive_error"].sum() / df["receive"].sum() * 100
-        context["probability_net"] = df["net_error"].sum() / df["net"].sum() * 100
+        context["probability_stroke"] = 100 - (df["stroke_error"].sum() / df["stroke"].sum() * 100)
+        context["probability_service"] = 100 - (df["service_error"].sum() / df["service"].sum() * 100)
+        context["probability_receive"] = 100 - (df["receive_error"].sum() / df["receive"].sum() * 100)
+        context["probability_net"] = 100 - (df["net_error"].sum() / df["net"].sum() * 100)
+        #本数
+        context["all_stroke"] = df["stroke"].sum()
+        context["all_service"] = df["service"].sum()
+        context["all_receive"] = df["receive"].sum()
+        context["all_net"] = df["net"].sum()
+        context["all_stroke_error"] = df["stroke_error"].sum()
+        context["all_service_error"] = df["service_error"].sum()
+        context["all_receive_error"] = df["receive_error"].sum()
+        context["all_net_error"] = df["net_error"].sum()
 
 
         return context

@@ -2,97 +2,6 @@
 
 {% block content %}
 
-<script type="text/javascript" language="javascript">
-
-    window.onload = function() {
-
-    }
-
-    function add_stroke() {
-         target = document.getElementById("id_stroke");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_stroke() {
-         target = document.getElementById("id_stroke");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-    function add_stroke_error() {
-         target = document.getElementById("id_stroke_error");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_stroke_error() {
-         target = document.getElementById("id_stroke_error");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-
-    function add_service() {
-         target = document.getElementById("id_service");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_service() {
-         target = document.getElementById("id_service");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-    function add_service_error() {
-         target = document.getElementById("id_service_error");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_service_error() {
-         target = document.getElementById("id_service_error");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-
-    function add_receive() {
-         target = document.getElementById("id_receive");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_receive() {
-         target = document.getElementById("id_receive");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-    function add_receive_error() {
-         target = document.getElementById("id_receive_error");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_receive_error() {
-         target = document.getElementById("id_receive_error");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-
-    function add_net() {
-         target = document.getElementById("id_net");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_net() {
-         target = document.getElementById("id_net");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-    function add_net_error() {
-         target = document.getElementById("id_net_error");
-         num = parseInt(target.value) + 1;
-         target.value = num;
-    }
-    function take_net_error() {
-         target = document.getElementById("id_net_error");
-         num = parseInt(target.value) - 1;
-         target.value = num;
-    }
-</script>
-
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="main_box">
@@ -100,25 +9,30 @@
     </div>
 
     <div class="mid_box">
+        <div class="weak_1">{{ created_date }}</div>
+            {{ player }} VS {{ opponent }}
 
-    {{ player }} VS {{ opponent }}
-    {{ created_date }}
     <hr>
     {{ game_count1 }} - {{ game_count2 }}
 
     <hr>
-    サービス成功率：{{ probability_service|floatformat }}%<br>
-    リターン成功率：{{ probability_receive|floatformat }}%<br>
-    ストローク成功率：{{ probability_stroke|floatformat }}%<br>
-    ネットプレー成功率：{{ probability_net|floatformat }}%<br>
+    サービス成功率：{{ probability_service|floatformat }}%【 {{ all_service }}：{{ all_service_error }} 】<br>
+    リターン成功率：{{ probability_receive|floatformat }}%【{{ all_receive }}：{{ all_receive_error }}】<br>
+    ストローク成功率：{{ probability_stroke|floatformat }}%【{{ all_stroke }}：{{ all_stroke_error }}】<br>
+    ネットプレー成功率：{{ probability_net|floatformat }}%【{{ all_net }}：{{ all_net_error }}】<br>
+    </div>
+
+    <div class="mid_box">
+        <div class="b_box">
+            <a href="{% url 'chance:chance' %}" ><button type="submit" class="form_b_01">Back</button></a>
+        </div>
     </div>
 </div>
 
 <footer>
 
     <div  class="user_box">
-        <div style="text-align:center; font-size:80%; "><a href="{% url 'chance:chance' %}" >BACK LIST</a></div>
-
+        　　
     </div>
     <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
 
