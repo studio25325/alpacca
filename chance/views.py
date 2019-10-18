@@ -156,5 +156,14 @@ class MatchDetailView(OnlyYouMixin, DetailView):
         context["all_receive_error"] = df["receive_error"].sum()
         context["all_net_error"] = df["net_error"].sum()
 
-
         return context
+
+
+
+#投稿の削除
+class MatchDeleteView(OnlyYouMixin, DeleteView):
+    model = CMatch
+    template_name = "chance/match_delete.html"
+
+    def get_success_url(self):
+        return resolve_url('chance:chance')

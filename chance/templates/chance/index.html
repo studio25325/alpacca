@@ -14,6 +14,9 @@
             <td>
                 <div class="weak_1">{{ post.created_date }}</div>
                 <a href="{% url 'chance:match_detail' post.pk %}"> {{ post.player }} vs {{ post.opponent }}</a>
+                <div class="schedule_box_6">
+                    <a href="{% url 'chance:match_delete' post.pk %}"><button type="submit" class="form_b_02">結果を削除</button></a>
+                </div>
             </td>
         </tr>
         {% endfor %}

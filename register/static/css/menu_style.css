@@ -516,6 +516,26 @@ p {
     box-shadow: 0px 0px 0px 5px #87befd;
     border: dashed 1px #FFF;
 }
+.form_b_02 {
+    font-size: 9px;
+    border:0 !important;
+    padding:2px !important;
+    color:#fff !important;
+    border:solid 1px #d3dee8 !important;
+    margin:0px 0px 4px 2px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    border-radius: 6px !important;
+
+    display: inline-block;
+    text-decoration: none;
+    background: #87befd;
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 3px #87befd;
+    border: dashed 1px #FFF;
+}
 .b_box {
     padding: 2px 6px 0 0;
     width: auto;
