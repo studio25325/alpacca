@@ -21,46 +21,40 @@
 </script>
 
 <div class="container">
+    <div class="row">
 
-
-
-        <div  class="gt_box1">
             {% if foo1 == 'family' %}
-            <!--<div id="incomplete" style="display:none">-->
-                <a class="btn-circle-stitch" href="/challenge" role="button">Ten thousand challenge</a>
-                <br>
-                <br>
-            <!--</div>-->
-            <div id="completion" style="display:none">
-                <a class="btn-circle-stitch" href="/challenge" role="button">Ten thousand challenge</a>
+
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/challenge" role="button">Ten thousand challenge</a>
+                </div>
             </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/schedule" role="button">Schedule</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/menu" role="button">Menu</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/chance" role="button">Chance of shot</a>
+                </div>
+            </div>
+            {% else %}
+                <div class="box_set2">
+                    <a class="btn-circle-stitch" href="/challenge" role="button">Ten thousand challenge</a>
+                </div>
             {% endif %}
-            <!--
-            <a class="btn btn-info btn-lg btn-block" href="https://grooow.net/" role="button">ブログ</a>
-            -->
-            <a class="btn-circle-stitch" href="/schedule" role="button">Schedule</a>
+    </div>
+</div>
 
-
-            {% if foo1 == 'family' %}
-                <br><br>
-                <a class="btn-circle-stitch" href="/menu" role="button">Menu</a>
-
-            {% endif %}
-
-            {% if foo1 == 'family' %}
-                <br><br>
-                <a class="btn-circle-stitch" href="/chance" role="button">Chance of shot</a>
-
-            {% endif %}
-
-        </div>
-
-
-<br />
-
-
-
-
+<div>
+    　<br><br><br><br><br><br>
 </div>
 
 <footer>
