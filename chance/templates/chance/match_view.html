@@ -8,6 +8,7 @@
 
     window.onload = function() {
         document.getElementById("id_service_off").style.display ="none";
+        document.getElementById("id_second_off").style.display ="none";
         document.getElementById("id_receive_off").style.display ="none";
         document.getElementById("id_stroke_off").style.display ="none";
         document.getElementById("id_net_off").style.display ="none";
@@ -53,6 +54,27 @@
     }
     function take_service_error() {
          target = document.getElementById("id_service_error");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+
+    function add_second() {
+         target = document.getElementById("id_second");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_second() {
+         target = document.getElementById("id_second");
+         num = parseInt(target.value) - 1;
+         target.value = num;
+    }
+    function add_second_error() {
+         target = document.getElementById("id_second_error");
+         num = parseInt(target.value) + 1;
+         target.value = num;
+    }
+    function take_second_error() {
+         target = document.getElementById("id_second_error");
          num = parseInt(target.value) - 1;
          target.value = num;
     }
@@ -108,6 +130,15 @@
          document.getElementById("id_service_off").style.display ="none";
     }
 
+    function second_off() {
+         document.getElementById("id_second_on").style.display ="none";
+         document.getElementById("id_second_off").style.display ="block";
+    }
+    function second_on() {
+         document.getElementById("id_second_on").style.display ="block";
+         document.getElementById("id_second_off").style.display ="none";
+    }
+
     function receive_off() {
          document.getElementById("id_receive_on").style.display ="none";
          document.getElementById("id_receive_off").style.display ="block";
@@ -152,7 +183,7 @@
 
     <div class="mid_box" id="id_service_on">
         <div class="inline-block00">
-            <input class="form_c_04" type="button" value="サービス" onclick="service_off();" />
+            <input class="form_c_04" type="button" value="1stサービス" onclick="service_off();" />
         </div>
         <div class="inline-block01">
             <input class="form_c_03" type="button" value="+" onclick="add_service();" />
@@ -178,6 +209,36 @@
             <input class="form_c_03" type="button" value="-" onclick="take_service_error();" />
         </div>
     </div>
+
+    <div class="mid_box" id="id_second_on">
+        <div class="inline-block00">
+            <input class="form_c_04" type="button" value="2ndサービス" onclick="second_off();" />
+        </div>
+        <div class="inline-block01">
+            <input class="form_c_03" type="button" value="+" onclick="add_second();" />
+        </div>
+        <div class="inline-block01">
+            {{ form.second|add_class:'form_c_02' }}
+        </div>
+        <div class="inline-block01">
+            <input class="form_c_03" type="button" value="-" onclick="take_second();" />
+        </div>
+    </div>
+    <div class="mid_box" id="id_second_off">
+        <div class="inline-block00">
+            <input class="form_c_05" type="button" value="フォルト" onclick="second_on();" />
+        </div>
+        <div class="inline-block01">
+            <input class="form_c_03" type="button" value="+" onclick="add_second_error();" />
+        </div>
+        <div class="inline-block01">
+            {{ form.second_error|add_class:'form_c_02' }}
+        </div>
+        <div class="inline-block01">
+            <input class="form_c_03" type="button" value="-" onclick="take_second_error();" />
+        </div>
+    </div>
+
     <div class="mid_box" id="id_receive_on">
         <div class="inline-block00">
             <input class="form_c_04" type="button" value="リターン" onclick="receive_off();" />
@@ -275,7 +336,8 @@
     </form>
 
     <div class="mid_box">
-        サービス成功率：{{ probability_service|floatformat }}%<br>
+        1stサービス成功率：{{ probability_service|floatformat }}%<br>
+        2ndサービス成功率：{{ probability_second|floatformat }}%<br>
         リターン成功率：{{ probability_receive|floatformat }}%<br>
         ストローク成功率：{{ probability_stroke|floatformat }}%<br>
         ネットプレー成功率：{{ probability_net|floatformat }}%<br>

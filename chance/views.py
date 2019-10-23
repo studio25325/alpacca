@@ -92,6 +92,7 @@ class MatchView(OnlyYouMixin, CreateView):
             #成功率の算出
             context["probability_stroke"] = 100 - (df["stroke_error"].sum() / df["stroke"].sum() * 100)
             context["probability_service"] = 100 - (df["service_error"].sum() / df["service"].sum() * 100)
+            context["probability_second"] = 100 - (df["second_error"].sum() / df["second"].sum() * 100)
             context["probability_receive"] = 100 - (df["receive_error"].sum() / df["receive"].sum() * 100)
             context["probability_net"] = 100 - (df["net_error"].sum() / df["net"].sum() * 100)
 

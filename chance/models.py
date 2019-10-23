@@ -21,6 +21,8 @@ class CGame(models.Model):
     stroke_error = models.IntegerField(max_length=100, default=0)
     service = models.IntegerField(max_length=100, default=0)
     service_error = models.IntegerField(max_length=100, default=0)
+    second = models.IntegerField(max_length=100, default=0)
+    second_error = models.IntegerField(max_length=100, default=0)
     receive = models.IntegerField(max_length=100, default=0)
     receive_error = models.IntegerField(max_length=100, default=0)
     net = models.IntegerField(max_length=100, default=0)

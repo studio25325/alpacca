@@ -48,5 +48,5 @@ class GameForm(forms.ModelForm):
 
     class Meta:
         model = CGame
-        fields = ('game_id', 'stroke', 'stroke_error', 'service', 'service_error', 'receive', 'receive_error', 'net', 'net_error', 'games', 'created_date',)
+        fields = ('game_id', 'stroke', 'stroke_error', 'service', 'service_error', 'second', 'second_error', 'receive', 'receive_error', 'net', 'net_error', 'games', 'created_date',)
         #fields = '__all__'
