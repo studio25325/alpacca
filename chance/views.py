@@ -17,6 +17,9 @@ User = get_user_model()
 #dataFrameの利用に必要
 from django_pandas.io import read_frame
 
+#ページネーション
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from .forms import (
     MatchForm, GameForm,
 )
@@ -34,10 +37,15 @@ class OnlyYouMixin(UserPassesTestMixin):
 
 
 #メイン画面
-class MainView(OnlyYouMixin, TemplateView):
+class MainView(OnlyYouMixin, ListView):
     model = CMatch
     template_name = "chance/index.html"
     now = timezone.localtime(timezone.now())
+
+    #ページネーションを検討
+    #https://sleepless-se.net/2019/07/07/django-generic-listview-pagination/
+    paginate_by = 5
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["now"] = self.now
@@ -45,7 +53,7 @@ class MainView(OnlyYouMixin, TemplateView):
         context["foo"] = 10
 
         #リスト表示
-        context["posts"] = CMatch.objects.reverse().order_by('created_date')[:10]
+        context["posts"] = CMatch.objects.reverse().order_by('created_date')[:5]
 
         return context
 
@@ -57,7 +65,10 @@ class MatchCreateView(OnlyYouMixin, CreateView):
     form_class = MatchForm
 
     def get_success_url(self):
-        return resolve_url('chance:match_view')
+        #最新の登録IDを取得して、データ登録時のIDとして利用
+        set = CMatch.objects.all().last()
+        pass_id = set.id
+        return resolve_url('chance:match_view' ,pass_id)
 
 
 #試合詳細
@@ -71,11 +82,10 @@ class MatchView(OnlyYouMixin, CreateView):
         context["game_count1"] = 0
         context["game_count2"] = 0
 
-        #直近登録の試合情報を取得
-        #set = CMatch.objects.filter(title='a').filter(show_flag='1')
-        set = CMatch.objects.all().last()
-        #当該試合のIDを取得
-        over_id = set.id
+        #試合登録で取得したID情報を受け取り
+        context["pass_id"] = self.kwargs.get('pass_id')
+        over_id = self.kwargs.get('pass_id')
+        set = CMatch.objects.get(id = over_id)
 
         #当該試合のゲーム数をカウント
         show_game = CGame.objects.filter(game_id = over_id)
@@ -105,14 +115,17 @@ class MatchView(OnlyYouMixin, CreateView):
         return context
 
     def get_success_url(self):
-        return resolve_url('chance:match_view')
+        over_id = self.kwargs.get('pass_id')
+        return resolve_url('chance:match_view', over_id)
 
 
 
 #試合詳細表示ーー
-class MatchDetailView(OnlyYouMixin, DetailView):
+class MatchDetailView(OnlyYouMixin, UpdateView):
+
     model = CMatch
     template_name = "chance/match_detail.html"
+    form_class = MatchForm
     now = timezone.localtime(timezone.now())
 
     def get_context_data(self, **kwargs):
@@ -145,19 +158,25 @@ class MatchDetailView(OnlyYouMixin, DetailView):
         #成功率の算出
         context["probability_stroke"] = 100 - (df["stroke_error"].sum() / df["stroke"].sum() * 100)
         context["probability_service"] = 100 - (df["service_error"].sum() / df["service"].sum() * 100)
+        context["probability_second"] = 100 - (df["second_error"].sum() / df["second"].sum() * 100)
         context["probability_receive"] = 100 - (df["receive_error"].sum() / df["receive"].sum() * 100)
         context["probability_net"] = 100 - (df["net_error"].sum() / df["net"].sum() * 100)
         #本数
         context["all_stroke"] = df["stroke"].sum()
         context["all_service"] = df["service"].sum()
+        context["all_second"] = df["second"].sum()
         context["all_receive"] = df["receive"].sum()
         context["all_net"] = df["net"].sum()
         context["all_stroke_error"] = df["stroke_error"].sum()
         context["all_service_error"] = df["service_error"].sum()
+        context["all_second_error"] = df["second_error"].sum()
         context["all_receive_error"] = df["receive_error"].sum()
         context["all_net_error"] = df["net_error"].sum()
 
         return context
+
+    def get_success_url(self):
+        return resolve_url('chance:chance')
 
 
 

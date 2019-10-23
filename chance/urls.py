@@ -11,8 +11,10 @@ app_name = 'chance'
 urlpatterns = [
     #以下、本番用
     path('', views.MainView.as_view(), name='chance'),
+    #ページネーションを検討
+    path('', views.MainView.as_view(), name='chance_page'),
     path('new_match', views.MatchCreateView.as_view(), name='new_match'),
-    path('match_view', views.MatchView.as_view(), name='match_view'),
+    path('match_view/<int:pass_id>/', views.MatchView.as_view(), name='match_view'),
     path('match_detail/<int:pk>/', views.MatchDetailView.as_view(), name='match_detail'),
     path('delete/<int:pk>/', views.MatchDeleteView.as_view(), name='match_delete'),
 

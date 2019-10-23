@@ -5,8 +5,9 @@
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="main_box">
-        Match History
+        Match History　<a class="form_b_03" href="{% url 'chance:new_match' %}" role="button">新規登録</a>
     </div>
+
 
     <table class="table table-striped">
         {% for post in posts %}
@@ -24,9 +25,48 @@
 
 <br>
 
-<div class="now_box">
-    <a class="btn-circle-stitch" href="{% url 'chance:new_match' %}" role="button">Keep a log</a>
-</div>
+
+
+
+
+<nav aria-label="ページネーション">
+	<ul class="pagination">
+
+		{% if page_obj.has_previous %}
+			<li class="page-item">
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="前へ">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% for page_num in page_obj.paginator.page_range %}
+			{% if page_num == page_obj.number %}
+				<li class="page-item active">
+					<a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+				</li>
+			{% else %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+
+		{% if page_obj.has_next %}
+			<li class="page-item">
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="次へ">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		{% endif %}
+
+	</ul>
+</nav>
+
+
+
+
+
 
 <br>
 

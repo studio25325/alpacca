@@ -106,6 +106,9 @@ h2 {
 }
 
 .main_box {
+    display: flex;
+    justify-content: space-between; /* 左右均等分布 */
+    align-items: center; /* 上下中央揃え */
     background: linear-gradient(160deg, #4b81bc, #4873a6);
     width: 100%;
     color: #a5c5e7;
@@ -531,6 +534,25 @@ p {
     text-decoration: none;
     background: #87befd;
     width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 3px #87befd;
+    border: dashed 1px #FFF;
+}
+.form_b_03 {
+    font-size: 16px;
+    border:0 !important;
+    padding:0px !important;
+    color:#fff !important;
+    border:solid 1px #d3dee8 !important;
+    margin:0px 0px 0px 2px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    border-radius: 6px !important;
+    text-align: center;
+    text-decoration: none;
+    background: #87befd;
+    width: 150px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0px 0px 0px 3px #87befd;
