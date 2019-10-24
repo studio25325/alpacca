@@ -687,3 +687,30 @@ p {
   text-decoration: none;
   box-shadow: 0px 0px 0px 5px #668ad8;
 }
+
+/* ページネーション */
+.mid_box_page {
+    padding: 20px 20px 10px 20px;
+    margin: 0px 0px 0px 0px;
+    background-color: #edf0f5;
+    width: auto;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.page-link {
+    font-size: 12px !important;
+    padding: 6px 10px 6px 10px !important;
+    background-color:#b1d4fc !important;
+    color: #fff !important;
+    border: 2px solid #edf0f5 !important;
+}
+.page-item.active .page-link {
+    background-color: #87befd !important;
+    border-color: #87befd !important;
+    color: #fff !important;
+    border: 2px solid #edf0f5 !important;
+}
+.table {
+    margin-bottom: 10px !important;
+}

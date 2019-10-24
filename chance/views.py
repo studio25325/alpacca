@@ -44,7 +44,7 @@ class MainView(OnlyYouMixin, ListView):
 
     #ページネーションを検討
     #https://sleepless-se.net/2019/07/07/django-generic-listview-pagination/
-    paginate_by = 5
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,9 +53,17 @@ class MainView(OnlyYouMixin, ListView):
         context["foo"] = 10
 
         #リスト表示
-        context["posts"] = CMatch.objects.reverse().order_by('created_date')[:5]
+        #context["posts"] = CMatch.objects.reverse().order_by('created_date')[:5]
+        #context["posts"] = CMatch.objects.all()
 
         return context
+
+
+#リスト表示テスト
+class ListView(ListView):
+    template_name = "chance/list.html"
+    model = CMatch
+    paginate_by = 4
 
 
 #試合登録フォーム
