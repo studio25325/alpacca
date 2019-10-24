@@ -41,29 +41,16 @@ class MainView(OnlyYouMixin, ListView):
     model = CMatch
     template_name = "chance/index.html"
     now = timezone.localtime(timezone.now())
-
-    #ページネーションを検討
-    #https://sleepless-se.net/2019/07/07/django-generic-listview-pagination/
+    queryset = CMatch.objects.order_by('-created_date')
     paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["now"] = self.now
-
         context["foo"] = 10
-
-        #リスト表示
-        #context["posts"] = CMatch.objects.reverse().order_by('created_date')[:5]
-        #context["posts"] = CMatch.objects.all()
 
         return context
 
-
-#リスト表示テスト
-class ListView(ListView):
-    template_name = "chance/list.html"
-    model = CMatch
-    paginate_by = 4
 
 
 #試合登録フォーム
