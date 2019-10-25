@@ -197,6 +197,37 @@ div:nth-child(2n) > .mid_box {
   background: #668ad8;
   text-decoration: none;
   box-shadow: 0px 0px 0px 5px #668ad8;
+  background-image: url(../img/round_back_image.png);
+  background-size:  200px;
+  background-position: -20px -30px;
+}
+
+.btn-circle-stitch2 {
+  display: inline-block;
+  text-decoration: none;
+  background: #fd8791;
+  color: #FFF;
+  width: 140px;
+  height: 140px;
+  line-height: 140px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 5px #fd8791;
+  border: dashed 1px #FFF;
+  transition: .4s;
+  background-image: url(../img/round_back_image2.png);
+  background-size:  200px;
+  background-position: -20px -30px;
+}
+
+.btn-circle-stitch2:hover {
+  background: #668ad8;
+  text-decoration: none;
+  box-shadow: 0px 0px 0px 5px #668ad8;
+  background-image: url(../img/round_back_image.png);
+  background-size:  200px;
+  background-position: -20px -30px;
 }
 
 .gt_box1 {
