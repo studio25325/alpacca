@@ -31,7 +31,7 @@
     		{% if page_obj.has_previous %}
     			<li class="page-item">
     				<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="前へ">
-    					<span aria-hidden="true">&laquo;</span>
+    					<i class="fas fa-chevron-circle-left"></i> Prev
     				</a>
     			</li>
     		{% endif %}
@@ -51,7 +51,7 @@
     		{% if page_obj.has_next %}
     			<li class="page-item">
     				<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="次へ">
-    					<span aria-hidden="true">&raquo;</span>
+    					Next <i class="fas fa-chevron-circle-right"></i>
     				</a>
     			</li>
     		{% endif %}
