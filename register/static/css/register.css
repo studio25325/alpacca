@@ -188,13 +188,12 @@ div:nth-child(2n) > .mid_box {
   border-radius: 50%;
   text-align: center;
   overflow: hidden;
-  box-shadow: 0px 0px 0px 5px #87befd;
-  border: dashed 1px #FFF;
+  border: dashed 3px #FFF;
   transition: .4s;
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
-  filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.4));
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 
 .btn-circle-stitch:hover {
@@ -204,7 +203,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
-  filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.4));
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 
 .btn-circle-stitch2 {
@@ -219,12 +218,12 @@ div:nth-child(2n) > .mid_box {
   text-align: center;
   overflow: hidden;
   box-shadow: 0px 0px 0px 5px #fd8791;
-  border: dashed 1px #FFF;
+  border: dashed 3px #FFF;
   transition: .4s;
   background-image: url(../img/round_back_image2.png);
   background-size:  200px;
   background-position: -20px -30px;
-  filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.4));
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 
 .btn-circle-stitch2:hover {
@@ -234,7 +233,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
-  filter: drop-shadow(7px 7px 7px rgba(0,0,0,0.4));
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 
 .gt_box1 {
