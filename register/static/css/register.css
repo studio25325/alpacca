@@ -2,6 +2,9 @@ body {
     font-family: 'Libre Baskerville', serif;
     background: linear-gradient(160deg, #f5f4f4, #e1dfdf);
     color: #353535;
+    background-image: url(../img/back_ground.jpg);
+    background-size:  400px;
+    background-position: -20px -30px;
 }
 
 .wrapper {
@@ -191,6 +194,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 }
 
 .btn-circle-stitch:hover {
@@ -200,6 +204,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 }
 
 .btn-circle-stitch2 {
@@ -219,6 +224,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image2.png);
   background-size:  200px;
   background-position: -20px -30px;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 }
 
 .btn-circle-stitch2:hover {
@@ -228,6 +234,7 @@ div:nth-child(2n) > .mid_box {
   background-image: url(../img/round_back_image.png);
   background-size:  200px;
   background-position: -20px -30px;
+  filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 }
 
 .gt_box1 {
