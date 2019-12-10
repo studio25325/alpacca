@@ -76,12 +76,15 @@ class CalView(OnlyYouMixin, mixins.WeekWithScheduleMixin, TemplateView):
             context["next_month"] = self.kwargs.get('get_next_month') + 1
             dic_next["year"] = self.kwargs.get('get_next_year')
             dic_next["month"] = self.kwargs.get('get_next_month')
-            if context["next_month"] == 13:
+
+            if context["next_month"] == 14:
                 context["next_month"] = 1
+                dic_next["month"] = 1
+                context["view_month"] = 1
                 context["next_year"] = context["next_year"] + 1
 
             #曜日情報の取得
-            context["calendar"] = cal.itermonthdays2(dic_next["year"], dic_next["month"])
+            context["calendar"] = cal.itermonthdays2(context["next_year"], dic_next["month"])
 
         #ユーザーグループの取得
         #グループ毎の処理を分岐させるにはget_context_dataをクラス毎に記載しておく
