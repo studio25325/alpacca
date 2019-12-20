@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 absl-py==0.8.0
 astor==0.8.0
 beautifulsoup4==4.8.0
@@ -29,3 +30,12 @@ termcolor==1.1.0
 urllib3==1.25.3
 Werkzeug==0.15.6
 wrapt==1.11.2
+=======
+Django==2.0.13
+django-pandas==0.6.1
+numpy==1.16.4
+pandas==0.24.2
+python-dateutil==2.8.0
+pytz==2019.1
+six==1.12.0
+>>>>>>> origin/master
