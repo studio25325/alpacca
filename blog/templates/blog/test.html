@@ -1,0 +1,17 @@
+{% extends 'challenge/base.html' %}
+
+{% block content %}
+
+
+テスト
+{{ foo }}：{{ foo2 }}
+<br />
+<a href="{% url 'schedule:test2' foo foo2 %}">Next10</a>
+
+<br />
+
+{{ get1 }}
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="card col-md-12">
+        ここに通常のボタンを表示
+    </div>
+    <div class="row">
+        <div class="col-6" style="background-color:#FFCC00;">
+        縦並びで良いので、自分の選択肢の後に相手の選択肢を表示
+        </div>
+        <div class="col-6" style="background-color:red;">
+        あいうえおかきくけこあいうえおかきくけこ
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card col-md-6">
+        <br />
+        <br />
+            このアプリケーションはログインしてからご利用ください。<br /><br />
+            <input type="button"  class="btn btn-success btn-lg btn-block" onClick="location.href='https://localhost-grooow.paiza-user.cloud:8000/login/" value="ログイン">
+        <br />
+        <br />
+    </div>
+</div>
+<br />
+
+ユーザーID：{{ foo }}
+{{ foo1 }}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<p id="message">メッセージですよ〜</p>
+
+{{ request }}
+{{ request.test.memo }}
+{{ request.test }}
+
+
+{{ form.media }}
+{{ model.memo }}
+
+
+{{ list_add.memo | linebreaksbr }}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Edit post
+    </div>
+
+    <div class="mid_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        {{ form_class }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    <br /><br /><br />
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+
+詳細表示
+内容{{ post.text }}<br>
+表示フラグ：{{ post.show_flag }}<br>
+予約フラグ：{{ post.reservation_flag }}<br>
+開始時間：{{ post.start_time }}<br>
+終了時間：{{ post.end_time }}<br>
+日付：{{ post.date.day }}<br>
+
+
+
+{% endblock %}

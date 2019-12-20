@@ -1,0 +1,72 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<script type="text/javascript" language="javascript">
+    var login_flag =  {{ foo }};
+    window.onload = function() {
+        document.getElementById("incomplete").style.display="none";
+        if(login_flag == 0){
+            document.getElementById("incomplete").style.display="block";
+        } else {
+            document.getElementById("completion").style.display="block";
+        }
+    }
+    function onButtonClick1() {
+        if(login_flag == 0){
+            document.getElementById("incomplete").style.display="block";
+        } else {
+            document.getElementById("completion").style.display="block";
+        }
+    }
+</script>
+
+<div class="container">
+    <div class="row">
+
+            {% if foo1 == 'family' %}
+
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch2" href="/challenge" role="button">Ten thousand challenge</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/schedule" role="button">Schedule</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch" href="/menu" role="button">Menu</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box_set1">
+                    <a class="btn-circle-stitch2" href="/chance" role="button">Chance of shot</a>
+                </div>
+            </div>
+            {% else %}
+                <div class="box_set2">
+                    <a class="btn-circle-stitch" href="/schedule" role="button">Schedule</a>
+                </div>
+
+            {% endif %}
+    </div>
+</div>
+
+<div>
+    　<br><br><br><br><br><br>
+</div>
+
+<footer class="footer">
+
+    <div  class="user_box">
+        <p>ハロー！ {{ foo_user }}さん</p>
+        <div style="text-align:center; font-size:80%; ">グループ：{{ foo1 }}</div>
+
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+
+</footer>
+
+{% endblock %}

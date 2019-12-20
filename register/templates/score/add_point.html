@@ -1,0 +1,580 @@
+{% extends "register/base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+ <script type="text/javascript" language="javascript">
+    var server_choice = {{ games_data.server }};
+    var win_lose = 0;
+    var double_fault = 0;
+    var game_flag = '{{ point3 }}';
+    window.onload = function() {
+        target = document.getElementById("id_match_id");
+        target.value = {{ ga.id }};
+        target = document.getElementById("id_player_id");
+        target.value = {{ foo2 }};
+        target = document.getElementById("id_game_id");
+        target.value = {{ games_data.id }};
+        
+        document.getElementById("created_date").style.display="none";
+        document.getElementById("server_set").style.display="none";
+        document.getElementById("return_set").style.display="none";
+        document.getElementById("stroke_set").style.display="none";
+        document.getElementById("return_stroke_set").style.display="none";
+        document.getElementById("net_set").style.display="none";
+        document.getElementById("no_touch_set").style.display="none";
+        document.getElementById("submit_set").style.display="none";
+        
+        document.getElementById("form_set").style.display="none";
+        
+        document.getElementById("new_game").style.display="none";
+        if(game_flag == 1){
+            document.getElementById("new_game").style.display="block";
+            document.getElementById("b_set").style.display="none";
+        }
+        
+        if(server_choice == 0){
+            target = document.getElementById("id_server");
+            target.value = '0';
+        } else {
+            target = document.getElementById("id_server");
+            target.value = '1';
+        }
+        
+    };
+    //サーブ状況
+    function onButtonClick1() {
+          target = document.getElementById("id_fault");
+          target.value = '1';
+          document.getElementById("serve01").disabled = "disabled";
+    }
+    function onButtonClick2() {
+          target = document.getElementById("id_fault");
+          target.value = '2';
+          double_fault = 1;
+          document.getElementById("serve01").disabled = "disabled";
+          document.getElementById("serve02").disabled = "disabled";
+          if(server_choice == 0){
+              document.getElementById("WIN").disabled = "disabled";
+          } else {
+              if(double_fault == 1){
+                  document.getElementById("LOSE").disabled = "disabled";
+              }
+          }
+            
+    }
+    function onButtonClick3() {
+          target = document.getElementById("id_fault");
+          target.value = '0';
+          double_fault = 0;
+          document.getElementById("serve01").disabled = "";
+          document.getElementById("serve02").disabled = "";
+          document.getElementById("WIN").disabled = "";
+          document.getElementById("LOSE").disabled = "";
+          document.getElementById("submit_set").style.display="none";
+    }
+    
+    //ポイント取得者
+    function onButtonClick4() {
+          target = document.getElementById("id_winner");
+          target.value = '0';
+          win_lose = 0;
+          document.getElementById("LOSE").disabled = "disabled";
+          if(server_choice == 0){
+              if(double_fault == 0){
+                  document.getElementById("server_set").style.display="block";
+              } else {
+                  document.getElementById("submit_set").style.display="block";
+              }
+          } else {
+              if(double_fault == 0){
+                  document.getElementById("return_set").style.display="block";
+              } else {
+                  document.getElementById("submit_set").style.display="block";
+              }
+            
+          }
+    }
+    function onButtonClick5() {
+          target = document.getElementById("id_winner");
+          target.value = '1';
+          win_lose = 1;
+          document.getElementById("WIN").disabled = "disabled";
+          if(server_choice == 0){
+              if(double_fault == 0){
+                  document.getElementById("server_set").style.display="block";
+                  document.getElementById("server1").disabled = "disabled";
+              } else {
+                  document.getElementById("submit_set").style.display="block";
+              }
+          } else {
+              if(double_fault == 0){
+                  document.getElementById("return_set").style.display="block";
+              } else {
+                  document.getElementById("submit_set").style.display="block";
+              }
+            
+          }
+
+    }
+    function onButtonClick6() {
+          target = document.getElementById("id_winner");
+          target.value = '100';
+          double_fault = 0;
+          document.getElementById("WIN").disabled = "";
+          document.getElementById("LOSE").disabled = "";
+          document.getElementById("server_set").style.display="none";
+          document.getElementById("return_set").style.display="none";
+          document.getElementById("submit_set").style.display="none";
+          document.getElementById("no_touch_set").style.display="none";
+    }
+    
+    //サーバの場合のボタンセット
+    function onButtonClick7() {
+          target = document.getElementById("id_situation");
+          target.value = '0';
+          document.getElementById("server2").disabled = "disabled";
+          document.getElementById("server3").disabled = "disabled";
+          document.getElementById("no_touch_set").style.display="block";
+    }
+    function onButtonClick8() {
+          target = document.getElementById("id_situation");
+          target.value = '2';
+          document.getElementById("server1").disabled = "disabled";
+          document.getElementById("server3").disabled = "disabled";
+          document.getElementById("stroke_set").style.display="block";
+    }
+    function onButtonClick9() {
+          target = document.getElementById("id_situation");
+          target.value = '3';
+          document.getElementById("server1").disabled = "disabled";
+          document.getElementById("server2").disabled = "disabled";
+          document.getElementById("net_set").style.display="block";
+    }
+    function onButtonClick10() {
+          target = document.getElementById("id_situation");
+          target.value = '100';
+          document.getElementById("server1").disabled = "";
+          document.getElementById("server2").disabled = "";
+          document.getElementById("server3").disabled = "";
+          document.getElementById("stroke_set").style.display="none";
+          document.getElementById("net_set").style.display="none";
+          document.getElementById("no_touch_set").style.display="none";
+    }
+    
+    //リターンの場合のボタンセット
+    function onButtonClick11() {
+          target = document.getElementById("id_situation");
+          target.value = '1';
+          document.getElementById("return2").disabled = "disabled";
+          document.getElementById("return3").disabled = "disabled";
+          if(server_choice == 1 & win_lose == 1){
+            document.getElementById("return_stroke_set").style.display="block";
+          } else {
+            document.getElementById("stroke_set").style.display="block";
+          }
+    }
+    function onButtonClick12() {
+          target = document.getElementById("id_situation");
+          target.value = '2';
+          document.getElementById("return1").disabled = "disabled";
+          document.getElementById("return3").disabled = "disabled";
+          document.getElementById("stroke_set").style.display="block";
+    }
+    function onButtonClick13() {
+          target = document.getElementById("id_situation");
+          target.value = '3';
+          document.getElementById("return1").disabled = "disabled";
+          document.getElementById("return2").disabled = "disabled";
+          document.getElementById("net_set").style.display="block";
+    }
+    function onButtonClick14() {
+          target = document.getElementById("id_situation");
+          target.value = '100';
+          document.getElementById("return1").disabled = "";
+          document.getElementById("return2").disabled = "";
+          document.getElementById("return3").disabled = "";
+          document.getElementById("stroke_set").style.display="none";
+          document.getElementById("return_stroke_set").style.display="none";
+          document.getElementById("net_set").style.display="none";
+    }
+    
+    //ストロークセット
+    function onButtonClick15() {
+          target = document.getElementById("id_own_shot");
+          target.value = '1';
+          document.getElementById("stroke2").disabled = "disabled";
+          document.getElementById("stroke3").disabled = "disabled";
+          document.getElementById("stroke4").disabled = "disabled";
+          document.getElementById("stroke5").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick16() {
+          target = document.getElementById("id_own_shot");
+          target.value = '2';
+          document.getElementById("stroke1").disabled = "disabled";
+          document.getElementById("stroke3").disabled = "disabled";
+          document.getElementById("stroke4").disabled = "disabled";
+          document.getElementById("stroke5").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick17() {
+          target = document.getElementById("id_own_shot");
+          target.value = '3';
+          document.getElementById("stroke1").disabled = "disabled";
+          document.getElementById("stroke2").disabled = "disabled";
+          document.getElementById("stroke4").disabled = "disabled";
+          document.getElementById("stroke5").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick18() {
+          target = document.getElementById("id_own_shot");
+          target.value = '4';
+          document.getElementById("stroke1").disabled = "disabled";
+          document.getElementById("stroke2").disabled = "disabled";
+          document.getElementById("stroke3").disabled = "disabled";
+          document.getElementById("stroke5").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick19() {
+          target = document.getElementById("id_own_shot");
+          target.value = '5';
+          document.getElementById("stroke1").disabled = "disabled";
+          document.getElementById("stroke2").disabled = "disabled";
+          document.getElementById("stroke3").disabled = "disabled";
+          document.getElementById("stroke4").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick20() {
+          target = document.getElementById("id_own_shot");
+          target.value = '100';
+          document.getElementById("stroke1").disabled = "";
+          document.getElementById("stroke2").disabled = "";
+          document.getElementById("stroke3").disabled = "";
+          document.getElementById("stroke4").disabled = "";
+          document.getElementById("stroke5").disabled = "";
+          document.getElementById("submit_set").style.display="none";
+    }
+    
+    //ネットプレイセット
+    function onButtonClick21() {
+          target = document.getElementById("id_own_shot");
+          target.value = '6';
+          document.getElementById("net_play2").disabled = "disabled";
+          document.getElementById("net_play3").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick22() {
+          target = document.getElementById("id_own_shot");
+          target.value = '7';
+          document.getElementById("net_play1").disabled = "disabled";
+          document.getElementById("net_play3").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick23() {
+          target = document.getElementById("id_own_shot");
+          target.value = '8';
+          document.getElementById("net_play1").disabled = "disabled";
+          document.getElementById("net_play2").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick24() {
+          target = document.getElementById("id_own_shot");
+          target.value = '100';
+          document.getElementById("net_play1").disabled = "";
+          document.getElementById("net_play2").disabled = "";
+          document.getElementById("net_play3").disabled = "";
+          document.getElementById("submit_set").style.display="none";
+    }
+    
+    //リターン
+    function onButtonClick25() {
+          target = document.getElementById("id_own_shot");
+          target.value = '20';
+          document.getElementById("return_miss2").disabled = "disabled";
+          document.getElementById("return_miss3").disabled = "disabled";
+          document.getElementById("return_miss4").disabled = "disabled";
+          document.getElementById("return_miss5").disabled = "disabled";
+          document.getElementById("return_miss7").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick26() {
+          target = document.getElementById("id_own_shot");
+          target.value = '21';
+          document.getElementById("return_miss1").disabled = "disabled";
+          document.getElementById("return_miss3").disabled = "disabled";
+          document.getElementById("return_miss4").disabled = "disabled";
+          document.getElementById("return_miss5").disabled = "disabled";
+          document.getElementById("return_miss7").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick27() {
+          target = document.getElementById("id_own_shot");
+          target.value = '22';
+          document.getElementById("return_miss1").disabled = "disabled";
+          document.getElementById("return_miss2").disabled = "disabled";
+          document.getElementById("return_miss4").disabled = "disabled";
+          document.getElementById("return_miss5").disabled = "disabled";
+          document.getElementById("return_miss7").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick28() {
+          target = document.getElementById("id_own_shot");
+          target.value = '23';
+          document.getElementById("return_miss1").disabled = "disabled";
+          document.getElementById("return_miss2").disabled = "disabled";
+          document.getElementById("return_miss3").disabled = "disabled";
+          document.getElementById("return_miss5").disabled = "disabled";
+          document.getElementById("return_miss7").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick29() {
+          target = document.getElementById("id_own_shot");
+          target.value = '24';
+          document.getElementById("return_miss1").disabled = "disabled";
+          document.getElementById("return_miss2").disabled = "disabled";
+          document.getElementById("return_miss3").disabled = "disabled";
+          document.getElementById("return_miss4").disabled = "disabled";
+          document.getElementById("return_miss7").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick30() {
+          target = document.getElementById("id_own_shot");
+          target.value = '100';
+          document.getElementById("return_miss1").disabled = "";
+          document.getElementById("return_miss2").disabled = "";
+          document.getElementById("return_miss3").disabled = "";
+          document.getElementById("return_miss4").disabled = "";
+          document.getElementById("return_miss5").disabled = "";
+          document.getElementById("return_miss7").disabled = "";
+          document.getElementById("submit_set").style.display="none";
+    }
+    function onButtonClick31() {
+          target = document.getElementById("id_own_shot");
+          target.value = '25';
+          document.getElementById("return_miss1").disabled = "disabled";
+          document.getElementById("return_miss2").disabled = "disabled";
+          document.getElementById("return_miss3").disabled = "disabled";
+          document.getElementById("return_miss4").disabled = "disabled";
+          document.getElementById("return_miss5").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+
+    //ポイント状況
+    function onButtonClick51() {
+          target = document.getElementById("id_own_shot");
+          target.value = '0';
+          document.getElementById("situation2").disabled = "disabled";
+          document.getElementById("situation3").disabled = "disabled";
+          document.getElementById("situation_set").style.display="none";
+          if(server_choice == 0){
+            document.getElementById("SR_set1").style.display="block";
+          } else {
+            document.getElementById("SR_set2").style.display="block";
+          }
+    }
+    
+    //サービス状況
+    function onButtonClick40() {
+          target = document.getElementById("id_own_shot");
+          target.value = '30';
+          document.getElementById("no_touch2").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick41() {
+          target = document.getElementById("id_own_shot");
+          target.value = '31';
+          document.getElementById("no_touch1").disabled = "disabled";
+          document.getElementById("submit_set").style.display="block";
+    }
+    function onButtonClick42() {
+          target = document.getElementById("id_own_shot");
+          target.value = '100';
+          document.getElementById("no_touch1").disabled = "";
+          document.getElementById("no_touch2").disabled = "";
+          document.getElementById("submit_set").style.display="none";
+    }
+    
+    function onButtonClick60() {
+          document.location.href = "{% url 'score:add_game' foo2  %}";
+    }
+
+ </script>
+
+
+{% if foo == Flase %}
+    <script>
+	    setTimeout("location.href='https://localhost-grooow.paiza-user.cloud:8000/login'",10*5);
+    </script>
+{% else %}
+
+{% endif %}
+
+
+<div class="row o-3column">
+    <div class="col-md-12">
+        <div  class="gt_box1">
+        
+        <h1>{{ ga.tournament_name }}：{{ ra }}</h1><br />
+        {{ ga.match_player }} vs {{ ga.match_enemy }}<br />
+        ゲームカウント：{{ ge1 }} - {{ ge2 }}<br />
+        スコア：{{ point1 }} - {{ point2 }}<br />
+        
+        <div id="new_game"><br />
+            <input type="button" id="next" value="次のゲームへ" class="btn btn-info" onclick="onButtonClick60();" />
+        <br />
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="b_set">
+<div class="row o-3column">
+<div class="col-md-12">
+<div class="gt_box1">
+
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <div class="gt_box3">
+        サーブ状況<br /><hr>
+        <input type="button" id="serve01" value="Fault" class="btn btn-info" onclick="onButtonClick1();" />
+        <input type="button" id="serve02" value="Double Fault" class="btn btn-info" onclick="onButtonClick2();" />
+        <input type="button" id="serve03" value="Reset" class="btn btn-info" onclick="onButtonClick3();" />
+    <br />
+    </div>
+    
+    <div class="gt_box3">
+        ポイント取得者<br /><hr>
+        <input type="button" id="WIN" value="WIN" class="btn btn-info" onclick="onButtonClick4();" />
+        <input type="button" id="LOSE" value="LOSE" class="btn btn-info" onclick="onButtonClick5();" />
+        <input type="button" id="WL" value="Reset" class="btn btn-info" onclick="onButtonClick6();" />
+    <br />
+    </div>
+    
+    <div id="server_set" style="display:none" class="gt_box3">
+        ポイント状況<br /><hr>
+        <input type="button" id="server1" value="サービス" class="btn btn-info btn-sm" onclick="onButtonClick7();" />
+        <input type="button" id="server2" value="ストローク" class="btn btn-info btn-sm" onclick="onButtonClick8();" />
+        <input type="button" id="server3" value="ネットプレイ" class="btn btn-info btn-sm" onclick="onButtonClick9();" />
+        <input type="button" id="server4" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick10();" />
+    <br />
+    </div>
+    
+    <div id="return_set" style="display:none" class="gt_box3">
+        ポイント状況<br /><hr>
+        <input type="button" id="return1" value="リターン" class="btn btn-info btn-sm" onclick="onButtonClick11();" />
+        <input type="button" id="return2" value="ストローク" class="btn btn-info btn-sm" onclick="onButtonClick12();" />
+        <input type="button" id="return3" value="ネットプレイ" class="btn btn-info btn-sm" onclick="onButtonClick13();" />
+        <input type="button" id="return4" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick14();" />
+    <br />
+    </div>
+    
+    <div id="stroke_set" style="display:none" class="gt_box3">
+        ショットーストローク<br /><hr>
+        <input type="button" id="stroke1" value="フォア" class="btn btn-info btn-sm" onclick="onButtonClick15();" />
+        <input type="button" id="stroke2" value="バック" class="btn btn-info btn-sm" onclick="onButtonClick16();" />
+        <input type="button" id="stroke3" value="フォアスライス" class="btn btn-info btn-sm" onclick="onButtonClick17();" />
+        <input type="button" id="stroke4" value=" バックスライス" class="btn btn-info btn-sm" onclick="onButtonClick18();" />
+        <input type="button" id="stroke5" value="ドロップ" class="btn btn-info btn-sm" onclick="onButtonClick19();" />
+        <input type="button" id="stroke6" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick20();" />
+    <br />
+    </div>
+    
+    <div id="return_stroke_set" style="display:none" class="gt_box3">
+        リターンミス<br /><hr>
+        <input type="button" id="return_miss1" value="フォア" class="btn btn-info btn-sm" onclick="onButtonClick25();" />
+        <input type="button" id="return_miss2" value="バック" class="btn btn-info btn-sm" onclick="onButtonClick26();" />
+        <input type="button" id="return_miss3" value="フォアスライス" class="btn btn-info btn-sm" onclick="onButtonClick27();" />
+        <input type="button" id="return_miss4" value=" バックスライス" class="btn btn-info btn-sm" onclick="onButtonClick28();" />
+        <input type="button" id="return_miss5" value="ドロップ" class="btn btn-info btn-sm" onclick="onButtonClick29();" />
+        <input type="button" id="return_miss7" value="ノータッチ" class="btn btn-info btn-sm" onclick="onButtonClick31();" />
+        <input type="button" id="return_miss6" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick30();" />
+    <br />
+    </div>
+
+    <div id="net_set" style="display:none" class="gt_box3">
+        ショットーネット<br /><hr>
+        <input type="button" id="net_play1" value="ボレー" class="btn btn-info btn-sm" onclick="onButtonClick21();" />
+        <input type="button" id="net_play2" value="スマッシュ" class="btn btn-info btn-sm" onclick="onButtonClick22();" />
+        <input type="button" id="net_play3" value="ドロップ" class="btn btn-info btn-sm" onclick="onButtonClick23();" />
+        <input type="button" id="net_play4" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick24();" />
+    <br />
+    </div>
+    
+    <div id="no_touch_set" style="display:none" class="gt_box3">
+        サービス状況<br /><hr>
+        <input type="button" id="no_touch1" value="リターンミス" class="btn btn-info btn-sm" onclick="onButtonClick40();" />
+        <input type="button" id="no_touch2" value="ノータッチ" class="btn btn-info btn-sm" onclick="onButtonClick41();" />
+        <input type="button" id="no_touch3" value="Reset" class="btn btn-info btn-sm" onclick="onButtonClick42();" />
+    <br />
+    </div>
+
+    <div id="submit_set" style="display:none">
+        <br />
+        <button type="submit" class="btn btn-info" >ポイント登録</button>
+    </div>
+    
+    
+    <table class="table" id="form_set" style="display:none">
+        <tbody>
+            <tr id="match_id">
+                <th><label for="id_match_id">試合ID</label></th>
+                <td>{{ form.match_id }}</td>
+            </tr>
+            <tr id="player_id">
+                <th><label for="id_player_id">プレーヤーID</label></th>
+                <td>{{ form.player_id }}</td>
+            </tr>
+            <tr id="game_id">
+                <th><label for="id_game_id">ゲームID</label></th>
+                <td>{{ form.game_id }}</td>
+            </tr>
+            <tr id="winner">
+                <th><label for="id_winner">勝者</label></th>
+                <td>{{ form.winner }}</td>
+            </tr>
+            <tr id="own_shot">
+                <th><label for="id_own_shot">自分</label></th>
+                <td>{{ form.own_shot }}</td>
+            </tr>
+            <tr id="opponent_shot">
+                <th><label for="id_opponent_shot">相手</label></th>
+                <td>{{ form.opponent_shot }}</td>
+            </tr>
+            <tr id="created_date">
+                <th><label for="id_created_date">日付</label></th>
+                <td>{{ form.created_date }}</td>
+            </tr>
+            <tr id="fault">
+                <th><label for="id_fault">サーブ</label></th>
+                <td>{{ form.fault }}</td>
+            </tr>
+            <tr id="situation">
+                <th><label for="id_situation">状況</label></th>
+                <td>{{ form.situation }}</td>
+            </tr>
+            <tr id="server">
+                <th><label for="id_server">サーバー</label></th>
+                <td>{{ form.server }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</form>
+
+</div>
+</div>
+</div>
+<!--b_set用のdiv-->
+</div>
+
+
+
+
+
+{% endblock %}

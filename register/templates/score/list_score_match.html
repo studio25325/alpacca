@@ -1,0 +1,28 @@
+{% extends "register/base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="row o-3column">
+<div class="col-md-12">
+<div  class="gt_box1">
+
+<table class="table">
+    <tbody>
+        {% for item in list_match %}
+        <tr>
+                <td><h1>{{ item.tournament_name }}</h1><br />{{ item.match_player }} vs {{ item.match_enemy }}</td>
+                <td width='30px'><button type="submit" class="btn btn-info"  onClick="location.href='{% url 'score:detail_match' item.id %}'">詳細</button></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<br />
+
+</div>
+</div>
+</div>
+
+{% endblock %}

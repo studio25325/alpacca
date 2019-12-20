@@ -1,0 +1,44 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+ <script type="text/javascript" language="javascript">
+    window.onload = function() {
+        target = document.getElementById("id_user_id");
+        target.value = {{ foo }};
+        document.getElementById("id_user_id").style.display="none";
+        document.getElementById("User id").style.display="none";
+        
+        target = document.getElementById("id_user_id");
+        target.innerHTML = "Penguin";
+        
+    };
+    function onButtonClick1() {
+          target = document.getElementById("id_server");
+          target.value = 'player';
+     }
+ </script>
+
+<div class="row o-3column">
+<div class="col-md-12">
+<div  class="gt_box1">
+
+<form action="" method="POST">
+    {{ form.non_field_errors }}
+    {{ form.user_id }}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th><label for="id_player_name">プレイヤー名</label></th>
+                <td>{{ form.player_name }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-info" >追加</button>
+</form>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

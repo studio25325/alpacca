@@ -1,0 +1,36 @@
+{% extends "register/base.html" %}
+{% block content %}
+<div class="row">
+    <!-- 左側、ログインエリア -->
+
+        <div  class="main_box3">
+        <form action="{% url 'register:login' %}" method="POST">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="regi_form">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <div class="regi_form2">
+                <button type="submit" class="btn btn-info btn-lg btn-block" >ログイン</button>
+            </div>
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+        </form>
+        </div>
+
+    </div><!-- 左側、ログインエリアおわり -->
+
+    <!-- 右側、会員登録エリア -->
+
+        <div class="regi_form2">
+            <a href="{% url 'register:user_create' %}" class="btn btn-info btn-lg btn-block" >会員登録</a>
+        </div>
+        <div class="regi_form2">
+            <a href="{% url 'register:password_reset' %}" class="btn btn-info btn-lg btn-block" >パスワードを忘れた方</a>
+        </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+<!--フォームコントロール-->
+{% load widget_tweaks %}
+
+<script type="text/javascript" language="javascript">
+
+    window.onload = function() {
+    }
+
+    function onButtonClick1() {
+         target = document.getElementById("id_match_id");
+         target.value = '0';
+    }
+
+    function onButtonClick18() {
+         target = document.getElementById("id_shot");
+         target.value = '6';
+    }
+</script>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        New GAME
+    </div>
+
+    <div class="mid_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.player|add_class:'form_c_01' }}
+        {{ form.opponent|add_class:'form_c_01' }}
+        {{ form.created_date|add_class:'form_c_01' }}
+        <div class="b_box">
+        <button type="submit" class="form_b_01">Save</button>
+        </div>
+    </form>
+    <br /><br /><br />
+    </div>
+</div>
+
+<footer>
+    <div  class="user_box">
+
+        <div style="text-align:center; font-size:80%; ">
+            <div class="weak_5">
+             　　
+            </div>
+        </div>
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+</footer>
+
+{% endblock %}

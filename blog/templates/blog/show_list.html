@@ -1,0 +1,54 @@
+{% extends 'challenge/base.html' %}
+
+{% block content %}
+
+ユーザーネーム：{{ user }}<br />
+ステータス：{{ user_flag }}
+
+<ul>
+  {% for item in object_list %}
+  <li>{{ item.title }}：{{ item.date }}</li>
+  {% endfor %}
+</ul>
+
+
+<ul>
+  {% for item2 in bar %}
+
+  <li><a href="{% url 'detail' %}">{{ item2 }}</a></li>
+  {% endfor %}
+</ul>
+
+記載方法：url 'detail' pk=post.pk
+
+
+{% for i in week %}
+    {{ i }}
+{% endfor %}
+
+
+{% for i in month.month_days %}
+    {{ i }}<br />
+{% endfor %}
+
+{% for i in month.week_names %}
+    {{ i }}<br />
+{% endfor %}
+
+<br /><br />
+
+
+{% for i in month.month_day_schedules %}
+    {% for days, plan in i.items %}
+        {{ days }}：{{ plan }}<br /><br />
+    {% endfor %}
+{% endfor %}
+
+
+
+
+
+
+
+
+{% endblock %}

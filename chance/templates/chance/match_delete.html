@@ -1,0 +1,35 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Match Delete
+    </div>
+
+    <div class="mid_box">
+        <div class="weak_1">{{ created_date }}</div>
+
+            <form method="POST" class="post-form">{% csrf_token %}
+                <br><br>
+                本当に結果を削除しても構いませんか？<br><br><br>
+                {{ form.as_p }}
+                <button type="submit" class="form_b_01">結果を削除</button>　
+
+            </form>
+            <a href="{% url 'chance:chance' %}" ><button class="form_b_01">Back</button></a>
+
+</div>
+
+<footer>
+
+    <div  class="user_box">
+        　　
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+
+</footer>
+
+
+{% endblock %}

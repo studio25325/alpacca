@@ -1,0 +1,153 @@
+{% extends "register/base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+
+ <script type="text/javascript" language="javascript">
+    window.onload = function() {
+        var server_chice = 100;
+        server_chice = '{{ server }}';
+        var game_end_flag = '{{ gameend }}';
+        if(game_end_flag == 1){
+            document.getElementById("message_win").style.display="block";
+        } else if (game_end_flag == 2){
+            document.getElementById("message_lose").style.display="block";
+        } else {
+            document.getElementById("form_set").style.display="block";
+        }
+        
+        target = document.getElementById("id_match_id");
+        target.value = {{ ga.id }};
+        target = document.getElementById("id_player_id");
+        target.value = '{{ wow }}';
+        
+        if(server_chice == 1){
+            target = document.getElementById("id_server");
+            target.value = '0';
+            document.getElementById("serve02").disabled = "disabled";
+            document.getElementById("serve03").disabled = "disabled";
+        } else if(server_chice == 0){
+            target = document.getElementById("id_server");
+            target.value = '1';
+            document.getElementById("serve01").disabled = "disabled";
+            document.getElementById("serve03").disabled = "disabled";
+        } else {
+            target = document.getElementById("id_server");
+            target.value = '100';
+            document.getElementById("b_set").style.display="none";
+        }
+        
+        
+        document.getElementById("match_id").style.display="none";
+        document.getElementById("player_id").style.display="none";
+        document.getElementById("created_date").style.display="none";
+    };
+    function onButtonClick1() {
+          target = document.getElementById("id_server");
+          target.value = '0';
+          document.getElementById("serve02").disabled = "disabled";
+          document.getElementById("b_set").style.display="block";
+    }
+    function onButtonClick2() {
+          target = document.getElementById("id_server");
+          target.value = '1';
+          document.getElementById("serve01").disabled = "disabled";
+          document.getElementById("b_set").style.display="block";
+    }
+    function onButtonClick3() {
+          target = document.getElementById("id_server");
+          target.value = '100';
+          document.getElementById("serve01").disabled = "";
+          document.getElementById("serve02").disabled = "";
+          document.getElementById("b_set").style.display="none";
+    }
+ </script>
+
+
+{% if foo == Flase %}
+    <script>
+	    setTimeout("location.href='https://localhost-grooow.paiza-user.cloud:8000/login'",10*5);
+    </script>
+{% else %}
+
+{% endif %}
+
+<div class="row o-3column">
+<div class="col-md-12">
+<div  class="gt_box1">
+
+<div id="form_set" style="display:none">
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <div>
+        サーバー選択<br /><hr>
+        <input type="button" id="serve01" value="プレイヤー" class="btn btn-info" onclick="onButtonClick1();" />
+        <input type="button" id="serve02" value="対戦相手" class="btn btn-info" onclick="onButtonClick2();" />
+        <input type="button" id="serve03" value="Reset" class="btn btn-info" onclick="onButtonClick3();" />
+    </div>
+    <br />
+    
+    <table class="table" style="display:none">
+        <tbody>
+            <tr id="match_id">
+                <th><label for="id_match_id">試合ID</label></th>
+                <td>{{ form.match_id |add_class:"form-control"  }}</td>
+            </tr>
+            <tr id="player_id">
+                <th><label for="id_player_id">プレーヤーID</label></th>
+                <td>{{ form.player_id |add_class:"form-control"  }}</td>
+            </tr>
+            <tr id="winner">
+                <th><label for="id_winner">勝者</label></th>
+                <td>{{ form.winner |add_class:"form-control"  }}</td>
+            </tr>
+            <tr id="server">
+                <th><label for="id_server">サーバー</label></th>
+                <td>{{ form.server |add_class:"form-control"  }}</td>
+            </tr>
+            <tr id="created_date">
+                <th><label for="id_created_date">日付</label></th>
+                <td>{{ form.created_date |add_class:"form-control"  }}</td>
+            </tr>
+            <tr id="tb_server"  style="display:none">
+                <th><label for="id_tb_server">ターブレークサーバー</label></th>
+                <td>{{ form.tb_server |add_class:"form-control"  }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="b_set">
+        <button type="submit" class="btn btn-info" >ゲームスタート</button>
+    </div>
+</form>
+
+<!--form_set-->
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div id="message_win" style="display:none">
+    <div class="row o-3column">
+        <div class="col-md-12">
+            <div  class="gt_box1">
+                <h1>おめでとう</h1>
+                <a class="nav-item nav-link" href="{% url 'score:top'%}">ツールトップ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="message_lose" style="display:none">
+    <div class="row o-3column">
+        <div class="col-md-12">
+            <div  class="gt_box1">
+                <h1>次はがんばろう！</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

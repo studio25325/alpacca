@@ -1,0 +1,21 @@
+{% extends 'collect/base.html' %}
+
+{% block content %}
+
+{{ foo }}
+<br>
+{% for i in title %}
+    {{ i }}
+{% endfor %}
+<br>
+{{ u }}
+<br>
+
+<br><br>
+<br><br>
+<a href="/collect" role="button">Collect Top</a>
+<br><br>
+<a href="/" role="button">Alpacca System</a>
+
+
+{% endblock %}

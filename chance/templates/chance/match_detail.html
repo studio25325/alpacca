@@ -1,0 +1,59 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+<!--フォームコントロール-->
+{% load widget_tweaks %}
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Match Detail
+    </div>
+
+    <div class="mid_box">
+        <div class="weak_1">{{ created_date }}</div>
+            {{ player }} VS {{ opponent }}
+
+    <hr>
+    {{ game_count1 }} - {{ game_count2 }}
+
+    <hr>
+    1stサービス成功率：{{ probability_service|floatformat }}%【 {{ all_service }}：{{ all_service_error }} 】<br>
+    2ndサービス成功率：{{ probability_second|floatformat }}%【 {{ all_second }}：{{ all_second_error }} 】<br>
+    リターン成功率：{{ probability_receive|floatformat }}%【{{ all_receive }}：{{ all_receive_error }}】<br>
+    ストローク成功率：{{ probability_stroke|floatformat }}%【{{ all_stroke }}：{{ all_stroke_error }}】<br>
+    ネットプレー成功率：{{ probability_net|floatformat }}%【{{ all_net }}：{{ all_net_error }}】<br>
+    </div>
+
+    <div class="mid_box">
+        <div class="b_box">
+            <a href="{% url 'chance:chance' %}" ><button type="submit" class="form_b_01">Back</button></a>
+        </div>
+
+        <hr>
+        登録内容更新<br><br>
+
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.player|add_class:'form_c_01' }}
+            {{ form.opponent|add_class:'form_c_01' }}
+            {{ form.created_date|add_class:'form_c_01' }}
+            <div class="b_box">
+            <button type="submit" class="form_b_01">Save</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<footer>
+
+    <div  class="user_box">
+        　　
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+
+</footer>
+
+
+{% endblock %}

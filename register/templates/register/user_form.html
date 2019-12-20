@@ -1,0 +1,28 @@
+{% extends "register/base.html" %}
+{% block content %}
+
+<div class="row o-3column">
+<div class="col-md-12">
+<div  class="main_box3">
+
+<form action="" method="POST">
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+    <div class="regi_form">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }} {{ field.errors }}
+    </div>
+    {% endfor %}
+
+
+    {% csrf_token %}
+    <div class="regi_form2">
+        <button type="submit" class="btn btn-info" >更新</button>
+    </div>
+</form>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

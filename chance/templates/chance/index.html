@@ -1,0 +1,83 @@
+{% extends 'chance/base.html' %}
+
+{% block content %}
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="main_box">
+        Match History　<a class="form_b_03" href="{% url 'chance:new_match' %}" role="button">新規登録</a>
+    </div>
+
+
+    <table class="table table-striped">
+        {% for post in object_list %}
+        <tr>
+            <td>
+                <div class="weak_1">{{ post.created_date }}</div>
+                <a href="{% url 'chance:match_detail' post.pk %}"><i class="fas fa-info-circle" style="color: #e172a9;"></i>{{ post.player }} vs {{ post.opponent }}</a>
+                <a href="{% url 'chance:match_delete' post.pk %}">　<i class="fas fa-trash-alt" style="color: #197ab2;"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+<div class="mid_box_page">
+    <nav aria-label="ページネーション">
+    	<ul class="pagination">
+
+    		{% if page_obj.has_previous %}
+    			<li class="page-item">
+    				<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="前へ">
+    					<i class="fas fa-chevron-circle-left"></i> Prev
+    				</a>
+    			</li>
+    		{% endif %}
+
+    		{% for page_num in page_obj.paginator.page_range %}
+    			{% if page_num == page_obj.number %}
+    				<li class="page-item active">
+    					<a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+    				</li>
+    			{% else %}
+    				<li class="page-item">
+    					<a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+    				</li>
+    			{% endif %}
+    		{% endfor %}
+
+    		{% if page_obj.has_next %}
+    			<li class="page-item">
+    				<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="次へ">
+    					Next <i class="fas fa-chevron-circle-right"></i>
+    				</a>
+    			</li>
+    		{% endif %}
+
+    	</ul>
+    </nav>
+</div>
+
+
+
+<footer>
+    <div  class="user_box">
+
+        <div style="text-align:center; font-size:80%; ">
+            <div class="weak_5">
+            {{ now.year }}年
+            {{ now.month }}月
+            {{ now.day }}日
+            {{ now.hour }}時
+            {{ now.minute }}分
+            {{ now.second }}秒
+            </div>
+        </div>
+    </div>
+    <div class="copyright"> Copyright © Alpacca System All Rights Reserved.</div>
+</footer>
+
+
+{% endblock %}
