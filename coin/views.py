@@ -20,3 +20,8 @@ def index(request):
         'title': title,
     }
     return render(request, 'coin/index.html', params)
+
+
+
+def more(request):
+    return render(request, 'more.html')
