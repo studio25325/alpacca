@@ -34,8 +34,9 @@ def index(request):
     title = 0
     params = {
         'foo': 'Hi Django!',
-        'title': title,
+        'title': 'title',
     }
+    params['foo'] = files
 
     return render(request, 'coin/index.html', params)
 
