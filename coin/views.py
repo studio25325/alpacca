@@ -18,7 +18,7 @@ data = json.dumps({
         "fields": [
             {
                 "title": "Alpacca System",
-                "value": "Djangoからポストした",
+                "value": "DjangoでWebからポストした",
             }],
         "image_url": files
       }]
