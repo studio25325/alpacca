@@ -13,4 +13,5 @@ app_name = 'coin'
 urlpatterns = [
     path('', views.index, name='index'),
     path('more', views.more),
+    path('slack', views.slack),
 ]
