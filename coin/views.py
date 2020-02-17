@@ -42,7 +42,6 @@ def index(request):
         'title': 'title',
         'host': 'host',
         'ip': 'ip',
-        'scr':articles,
     }
     params['foo'] = files
     params['host'] = host
